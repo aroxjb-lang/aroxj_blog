@@ -50,11 +50,13 @@
 }
 .image {
   max-width: 45%;
-  object-fit: cover;
   position: relative;
   img {
     border-radius: 10px;
     box-shadow: -20px 10px 50px -40px var(--main);
+    max-width: 100%;
+    object-fit: contain;
+    height: fit-content;
   }
   /* &::before {
     content: "";
