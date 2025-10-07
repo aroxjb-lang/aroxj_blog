@@ -11,12 +11,12 @@ export async function GET(
     const db = await client?.db("aroxj-blog");
     console.log(encodeURIComponent(id) + "    NEW ID");
     if (!/^[0-9a-fA-F]{24}$/.test(id)) {
-      let data = await db?.collection("contents").findOne({
+      const data = await db?.collection("contents").findOne({
         slug: id,
       });
       return Response.json({ data });
     } else {
-      let data = await db
+      const data = await db
         ?.collection("contents")
         .findOne({ _id: new ObjectId(id) });
 
