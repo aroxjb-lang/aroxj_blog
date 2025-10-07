@@ -1,15 +1,31 @@
-// import { MongoClient } from "mongodb";
-// import { attachDatabasePool } from "@vercel/functions";
+import { Collection, MongoClient, MongoClientOptions } from "mongodb";
+import { attachDatabasePool } from "@vercel/functions";
 
-// // ... existing connection setup ...
+const uri = process.env.MONGODB_URI;
+const options: MongoClientOptions = {
+  appName: "devrel.vercel.integration",
+};
 
-// // After creating the MongoClient, attach it to Vercel's pool manager
-// if (process.env.NODE_ENV === "development") {
-//   if (!globalWithMongo._mongoClient) {
-//     globalWithMongo._mongoClient = new MongoClient(uri, options);
-//   }
-//   client = globalWithMongo._mongoClient;
-// } else {
-//   client = new MongoClient(uri, options);
-//   attachDatabasePool(client);
-// }
+let client: MongoClient | null = null;
+
+if (uri) {
+  if (process.env.NODE_ENV === "development") {
+    const globalWithMongo = global as typeof globalThis & {
+      _mongoClient?: MongoClient;
+    };
+
+    if (!globalWithMongo._mongoClient) {
+      client = new MongoClient(uri, options);
+      globalWithMongo._mongoClient = client;
+    }
+    client = globalWithMongo._mongoClient;
+  } else {
+    client = new MongoClient(uri, options);
+
+    attachDatabasePool(client);
+  }
+}
+
+
+
+export default client;

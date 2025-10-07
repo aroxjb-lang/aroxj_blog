@@ -1,0 +1,54 @@
+import { headers } from "next/headers";
+import { PostInterface } from "../schemas";
+
+export async function getPostByID(post_id: string): Promise<PostInterface> {
+  const headersList = await headers();
+  const host = headersList.get("host");
+  const protocol = headersList.get("x-forwarded-proto") || "http";
+
+  const postByID = await fetch(`${protocol}://${host}/api/posts/${post_id}`, {
+    cache: "force-cache",
+  });
+
+  const post = await postByID.json();
+  return post.data;
+}
+
+export async function getTopPost({
+  limit = 20,
+  page = 1,
+}: {
+  limit?: number;
+  page?: number;
+}): Promise<{ data: PostInterface[]; pagesCount: number }> {
+  const headersList = await headers();
+  const host = headersList.get("host");
+  const protocol = headersList.get("x-forwarded-proto") || "http";
+
+  const postByID = await fetch(
+    `${protocol}://${host}/api/posts/top?limit=${limit}&page=${page}`,
+    { cache: "force-cache" }
+  );
+
+  const post = await postByID.json();
+  return post;
+}
+export async function getArchivePost({
+  limit = 20,
+  page = 1,
+}: {
+  limit?: number;
+  page?: number;
+}): Promise<{ data: PostInterface[]; pagesCount: number }> {
+  const headersList = await headers();
+  const host = headersList.get("host");
+  const protocol = headersList.get("x-forwarded-proto") || "http";
+
+  const postByID = await fetch(
+    `${protocol}://${host}/api/posts/archive?limit=${limit}&page=${page}`,
+    { cache: "force-cache" }
+  );
+
+  const post = await postByID.json();
+  return post;
+}
