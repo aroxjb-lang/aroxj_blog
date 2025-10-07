@@ -33,7 +33,6 @@ export async function GET(request: NextRequest) {
         page = Math.floor(dataCount / limit) - 1;
       }
       if (limit * page >= 298 * 20) {
-        console.log(filter);
 
         filter = filter * -1;
         page = Math.floor(dataCount / limit) - page;

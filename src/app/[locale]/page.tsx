@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import { getTranslations } from "next-intl/server";
-import { getTopPost } from "../lib/actions";
+import { getTopPost } from "../lib/actions/posts";
 import Hero from "../components/Hero";
 export default async function Home({
   params,
@@ -12,7 +12,6 @@ export default async function Home({
   const { locale } = await params;
   const data = await getTopPost({ limit: 20, page: 1 });
   const heroData = data.data.slice(0, 5);
-  console.log(data);
   return (
     <div className={styles.page}>
       <Hero data={heroData} locale={locale} />

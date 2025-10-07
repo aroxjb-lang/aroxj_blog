@@ -11,9 +11,11 @@ export interface PostInterface {
   slug: string;
   content: MultilangualContentInterface;
   date: string;
-  featured_media_paths: string[] | string;
-  suggested_blob_paths: string[] | string;
+  featured_media_path: string[] | string;
+  suggested_blob_path: string[] | string;
   hashtags: string[];
   category: string;
   video_url: string;
 }
+
+export const BLOB_URL = "https://aroxjblog.am/wp-content/uploads/";

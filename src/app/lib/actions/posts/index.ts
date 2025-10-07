@@ -1,5 +1,4 @@
-import { headers } from "next/headers";
-import { PostInterface } from "../schemas";
+import { PostInterface } from "../../schemas";
 
 export async function getPostByID(post_id: string): Promise<PostInterface> {
   const postByID = await fetch(

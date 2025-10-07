@@ -1,4 +1,4 @@
-import { getPostByID } from "@/app/lib/actions";
+import { getPostByID } from "@/app/lib/actions/posts";
 import { MultilangualContentInterface } from "@/app/lib/schemas";
 import { redirect } from "@/i18n/navigation";
 import React from "react";

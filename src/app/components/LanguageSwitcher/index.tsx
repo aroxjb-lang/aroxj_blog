@@ -26,7 +26,7 @@ const LanguageSwitcher = () => {
         <MenuItem value={"am"}>
           <div className={styles.language}>
             <Image
-              src={"/flags/Armenia.svg"}
+              src={"/assets/flags/Armenia.svg"}
               width={20}
               height={15}
               alt="Armenian_Flag"
@@ -36,14 +36,19 @@ const LanguageSwitcher = () => {
         </MenuItem>
         <MenuItem value={"en"}>
           <div className={styles.language}>
-            <Image src={"/flags/UK.svg"} width={20} height={15} alt="UK_Flag" />{" "}
+            <Image
+              src={"/assets/flags/UK.svg"}
+              width={20}
+              height={15}
+              alt="UK_Flag"
+            />{" "}
             EN
           </div>
         </MenuItem>
         <MenuItem value={"ru"}>
           <div className={styles.language}>
             <Image
-              src={"/flags/Russia.svg"}
+              src={"/assets/flags/Russia.svg"}
               width={20}
               height={15}
               alt="Russian_Flag"
@@ -53,13 +58,6 @@ const LanguageSwitcher = () => {
         </MenuItem>
       </Select>
     </div>
-    // <select value={locale} onChange={handleChange}>
-
-    //   <option value="en">EN</option>
-    //   <option value="am">AM</option>
-    //   <option value="ru">RU</option>
-    //   {/* Add more language options as needed */}
-    // </select>
   );
 };
 

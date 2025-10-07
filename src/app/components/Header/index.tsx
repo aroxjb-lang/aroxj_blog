@@ -43,7 +43,11 @@ export default function Header() {
       <div className={styles.header} ref={refheader}>
         <Link href={Routes.HOME} className={styles.logo}>
           <Image src={"/logo.png"} width={64} height={64} alt="logo" />
-          <p className={styles.title}>{t("healthy blog")}</p>
+          <p className={styles.title}>
+            {t.rich("healthy blog", {
+              br: () => <br />,
+            })}
+          </p>
         </Link>
         <nav>
           <Tabs
