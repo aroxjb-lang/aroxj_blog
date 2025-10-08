@@ -25,7 +25,8 @@ export async function GET(request: NextRequest) {
 
     if (collection) {
       const dataCount = await collection.countDocuments({
-        date: { $gte: date.toISOString() },
+        date: { $lt: new Date().toISOString(), $gte: date.toISOString() },
+        category: "post",
       });
 
       if (limit * page >= 298 * 20) {
@@ -36,7 +37,10 @@ export async function GET(request: NextRequest) {
       const data = await collection
         .aggregate([
           {
-            $match: { date: { $gte: date.toISOString() } },
+            $match: {
+              date: { $lt: new Date().toISOString(), $gte: date.toISOString() },
+              category: "post",
+            },
           },
           { $sort: { date: -1 } },
           { $skip: skipValue },

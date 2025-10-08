@@ -38,7 +38,10 @@ export async function GET(request: NextRequest) {
       const data = await collection
         .aggregate([
           {
-            $match: { date: { $lt: date.toISOString() } },
+            $match: {
+              date: { $lt: date.toISOString() },
+              category: "post",
+            },
           },
           { $sort: { date: -1 } },
           { $skip: skipValue },

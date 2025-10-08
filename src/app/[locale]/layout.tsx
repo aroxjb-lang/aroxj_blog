@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
@@ -10,15 +10,17 @@ import { Suspense } from "react";
 import MUIThemeProvider from "../lib/context/themeContext";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import localFont from "next/font/local";
+import Loading from "./loading";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const bebas = localFont({
+  src: "../fonts/bebasNeue.ttf",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -40,12 +42,12 @@ export default async function RootLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang={locale}>
+      <body className={` ${bebas.className} ${geistSans.variable} `}>
         <NextIntlClientProvider>
           <MUIThemeProvider>
             <Header />
-            <Suspense fallback={<>Loading...</>}>{children}</Suspense>
+            <Suspense fallback={<Loading />}>{children}</Suspense>
           </MUIThemeProvider>
         </NextIntlClientProvider>
       </body>

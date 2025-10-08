@@ -1,8 +1,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --secondary-text: #17171771;
   --main: #37a711;
-
+  --background-active: #37a71114;
+  --font-bebas-sans: "bebas";
   --container: 1300px;
   --padding: 20px;
 }
@@ -10,6 +12,9 @@
 html,
 body {
   max-width: 100vw;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
 
 body {
@@ -17,6 +22,7 @@ body {
   background: var(--background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-geist-sans) !important;
 }
 
 * {
