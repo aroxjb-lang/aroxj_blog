@@ -22,7 +22,7 @@
 .mostViewedList {
   overflow-y: auto;
   padding: calc(var(--padding) / 2);
-  max-height: 542.4px;
+  max-height: 602.4px;
   &::-webkit-scrollbar {
     width: 3px;
     height: 100%;
@@ -59,4 +59,9 @@
   font-size: 12px;
   font-weight: 600;
   margin-bottom: 10px;
+}
+@media (max-width: 768px) {
+  .mostViewedList {
+    max-height: 320px;
+  }
 }
