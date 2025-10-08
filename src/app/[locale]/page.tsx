@@ -18,7 +18,7 @@ export default async function Home({
   return (
     <div className={styles.page}>
       <Hero data={heroData} locale={locale} />
-      <div className={styles.mostSection}>
+      <section className={styles.mostSection}>
         <div className={styles.topPost}>
           {data.map((post) => (
             <div key={post._id} className={styles.postItem}>
@@ -31,7 +31,8 @@ export default async function Home({
             <MostViewed locale={locale} />
           </Suspense>
         </div>
-      </div>
+      </section>
+      <section></section>
     </div>
   );
 }

@@ -1,9 +1,7 @@
 "use client";
-
-import React, { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import LanguageSwitcher from "../LanguageSwitcher";
-import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import { Link, redirect, usePathname, useRouter } from "@/i18n/navigation";
 import { Routes } from "@/app/lib/ruotes";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -18,29 +16,12 @@ const routes = [
 ];
 export default function Header() {
   const t = useTranslations();
-  const refheader = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
   const router = useRouter();
 
-  const [active, setActive] = useState(false);
-
-  const onScroll = useCallback(() => {
-    if (refheader.current)
-      setActive(window.scrollY > refheader.current.scrollTop);
-  }, [refheader]);
-  useEffect(() => {
-    window.addEventListener("scroll", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, [refheader]);
   return (
-    <div
-      className={clx(styles.wrapper, {
-        [styles.active]: active,
-      })}
-    >
-      <div className={styles.header} ref={refheader}>
+    <div className={styles.wrapper}>
+      <div className={styles.header}>
         <Link href={Routes.HOME} className={styles.logo}>
           <Image src={"/logo.png"} width={64} height={64} alt="logo" />
           <p className={styles.title}>
@@ -58,7 +39,6 @@ export default function Header() {
               router.push(value);
             }}
             textColor="inherit"
-            indicatorColor={active ? "secondary" : "primary"}
           >
             {routes.map((item) => (
               <Tab
