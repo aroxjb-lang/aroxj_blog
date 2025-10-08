@@ -42,7 +42,7 @@ export default async function RootLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={` ${bebas.className} ${geistSans.variable} `}>
         <NextIntlClientProvider>
           <MUIThemeProvider>

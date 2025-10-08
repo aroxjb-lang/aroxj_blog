@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  BLOB_URL,
-  MultilangualContentInterface,
-  PostInterface,
-} from "@/app/lib/schemas";
+import { BLOB_URL, Locales, PostInterface } from "@/app/lib/schemas";
 import React from "react";
 import styles from "./styles.module.css";
 import Slider from "react-slick";
@@ -26,10 +22,9 @@ export default function Hero({
   locale,
 }: {
   data: PostInterface[];
-  locale: string;
+  locale: Locales;
 }) {
   const t = useTranslations();
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.slider}>
@@ -45,12 +40,10 @@ export default function Hero({
                     alt="qoutes"
                     className={styles.quote}
                   />
-                  {item.title[locale as keyof MultilangualContentInterface] ||
-                    item.title.am}
+                  {item.title[locale] || item.title.am}
                 </h3>
                 <p className={styles.content}>
-                  {item.content[locale as keyof MultilangualContentInterface] ||
-                    item.content.am}{" "}
+                  {item.content[locale] || item.content.am}{" "}
                 </p>
                 <Link href={item.slug} className={styles.link} prefetch={true}>
                   {t("read more")}
@@ -58,7 +51,7 @@ export default function Hero({
               </div>
               <div className={styles.image}>
                 <Image
-                  src={BLOB_URL + item.featured_media_path}
+                  src={BLOB_URL + item.featured_media_paths[0]}
                   width={500}
                   height={300}
                   alt="banner"

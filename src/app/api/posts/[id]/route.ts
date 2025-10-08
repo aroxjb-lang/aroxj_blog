@@ -9,19 +9,11 @@ export async function GET(
   const { id } = await params;
   try {
     const db = await client?.db("aroxj-blog");
-    console.log(encodeURIComponent(id) + "    NEW ID");
-    if (!/^[0-9a-fA-F]{24}$/.test(id)) {
-      const data = await db?.collection("contents").findOne({
-        slug: id,
-      });
-      return Response.json({ data });
-    } else {
-      const data = await db
-        ?.collection("contents")
-        .findOne({ _id: new ObjectId(id) });
 
-      return Response.json({ data });
-    }
+    const data = await db?.collection("contents").findOne({
+      slug: id,
+    });
+    return Response.json({ data });
   } catch (err) {
     console.log(err);
     return Response.error();

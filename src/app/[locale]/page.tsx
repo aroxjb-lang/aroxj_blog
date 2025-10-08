@@ -1,20 +1,37 @@
-import Image from "next/image";
 import styles from "./page.module.css";
-import { getTranslations } from "next-intl/server";
 import { getTopPost } from "../lib/actions/posts";
 import Hero from "../components/Hero";
+import MostViewed from "../components/MostViewed";
+import { Suspense } from "react";
+import LoadingCircule from "../components/LoadingCircule";
+import { Locales } from "../lib/schemas";
+import Card from "../components/Card";
 export default async function Home({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: Locales }>;
 }) {
-  const t = await getTranslations();
   const { locale } = await params;
-  const data = await getTopPost({ limit: 20, page: 1 });
-  const heroData = data.data.slice(0, 5);
+  const { data } = await getTopPost({ limit: 11, page: 1 });
+  const heroData = data.splice(0, 5);
+
   return (
     <div className={styles.page}>
       <Hero data={heroData} locale={locale} />
+      <div className={styles.mostSection}>
+        <div className={styles.topPost}>
+          {data.map((post) => (
+            <div key={post._id} className={styles.postItem}>
+              <Card locale={locale} post={post} />
+            </div>
+          ))}
+        </div>
+        <div className={styles.mostViewWrapper}>
+          <Suspense fallback={<LoadingCircule size={"2rem"} />}>
+            <MostViewed locale={locale} />
+          </Suspense>
+        </div>
+      </div>
     </div>
   );
 }

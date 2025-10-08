@@ -58,20 +58,6 @@
     object-fit: contain;
     height: fit-content;
   }
-  /* &::before {
-    content: "";
-    position: absolute;
-    top: 10%;
-    left: -30%;
-    width: 400px;
-    height: 400px;
-    background: var(--main);
-    opacity: 0.1;
-    border-radius: 50%;
-    z-index: -1;
-    transform: rotate(-30deg);
-    filter: blur(20px);
-  } */
 }
 .quote {
   position: absolute;
@@ -79,4 +65,29 @@
   left: -20px;
   opacity: 0.1;
   z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .slide {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  .text {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 28px;
+    line-height: 32px;
+  }
+  .content {
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    text-align: center;
+  }
+  .image {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
 }

@@ -22,6 +22,7 @@ const LanguageSwitcher = () => {
         onChange={handleChange}
         variant="outlined"
         sx={{ background: "var(--background)" }}
+        size="small"
       >
         <MenuItem value={"am"}>
           <div className={styles.language}>

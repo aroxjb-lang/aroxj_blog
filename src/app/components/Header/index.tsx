@@ -12,8 +12,8 @@ import { Tab, Tabs } from "@mui/material";
 
 const routes = [
   {
-    title: "news",
-    slug: Routes.NEWS,
+    title: "blog",
+    slug: Routes.BLOG,
   },
 ];
 export default function Header() {

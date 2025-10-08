@@ -1,17 +1,6 @@
-import { CircularProgress } from "@mui/material";
 import React from "react";
+import LoadingCircule from "../components/LoadingCircule";
 
 export default function Loading() {
-  return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flex: 1,
-      }}
-    >
-      <CircularProgress enableTrackSlot size="5rem" />
-    </div>
-  );
+  return <LoadingCircule size={"5rem"} />;
 }
