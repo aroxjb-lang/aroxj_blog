@@ -5,6 +5,7 @@ import { useLocale } from "next-intl";
 import Image from "next/image";
 import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import styles from "./styles.module.css";
+import KeyboardArrowDownRounded from "@mui/icons-material/KeyboardArrowDownRounded";
 
 const LanguageSwitcher = () => {
   const router = useRouter();
@@ -21,7 +22,8 @@ const LanguageSwitcher = () => {
         value={locale}
         onChange={handleChange}
         variant="outlined"
-        sx={{ background: "var(--background)" }}
+        sx={{ background: "var(--background)", paddingRight: "14px" }}
+        IconComponent={KeyboardArrowDownRounded}
         size="small"
       >
         <MenuItem value={"am"}>

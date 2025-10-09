@@ -4,13 +4,37 @@
   max-width: var(--container);
   margin: 0 auto;
   padding: var(--padding);
+  margin-top: 20px;
+}
+
+.blogSection {
+  background-color: var(--background-active);
+}
+
+.blogWrapper {
+  display: flex;
+  gap: 20px;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: var(--padding);
+  /* margin-top: 20px; */
 }
 .mostViewWrapper {
   flex: 1 200px;
-  margin-top: 10px;
 }
 .topPost {
   flex: 10 700px;
+}
+.sectionTitle {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: var(--font-bebas-sans);
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.cards {
   display: flex;
   flex-wrap: wrap;
   width: calc(100% + 20px);

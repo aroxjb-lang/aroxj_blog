@@ -12,6 +12,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import localFont from "next/font/local";
 import Loading from "./loading";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+config.autoAddCss = false;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
