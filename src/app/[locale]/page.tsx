@@ -7,6 +7,7 @@ import LoadingCircule from "../components/LoadingCircule";
 import { Locales } from "../lib/schemas";
 import Card from "../components/Card";
 import { getTranslations } from "next-intl/server";
+import BlogSlider from "../components/BlogSlider";
 export default async function Home({
   params,
 }: {
@@ -14,7 +15,7 @@ export default async function Home({
 }) {
   const t = await getTranslations();
   const { locale } = await params;
-  const { data } = await getTopPost({ limit: 11, page: 1 });
+  const { data } = await getTopPost({ limit: 12, page: 1 });
   const heroData = data.splice(0, 5);
 
   return (
@@ -40,6 +41,8 @@ export default async function Home({
       <section className={styles.blogSection}>
         <div className={styles.blogWrapper}>
           <h3 className={styles.sectionTitle}>{t("blog")}</h3>
+          <p>ստեղ նկարների տեղը վիդեոներ ա լինելու էս գրածն էլ ջնջվելու ա</p>
+          <BlogSlider data={data} locale={locale} />
         </div>
       </section>
     </div>

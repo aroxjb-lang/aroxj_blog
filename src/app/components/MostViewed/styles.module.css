@@ -1,18 +1,18 @@
 .wrapper {
   max-height: 100%;
-  border: 2px solid var(--main);
+  /* border: 2px solid var(--main); */
   border-radius: 10px;
   overflow: hidden;
 }
 .title {
   font-family: var(--font-bebas-sans);
-  padding: calc(var(--padding) / 2);
+  /* padding: calc(var(--padding) / 2); */
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   border-bottom: 1px solid var(--main);
   letter-spacing: 1px;
-  text-align: center;
+  text-align: left;
   font-size: 18px;
   height: 44px;
   vertical-align: middle;
@@ -27,8 +27,8 @@
 
 .mostViewedList {
   overflow-y: auto;
-  padding: calc(var(--padding) / 2);
-  max-height: 645.8px;
+  /* padding: calc(var(--padding) / 2); */
+  max-height: 1445.8px;
   &::-webkit-scrollbar {
     width: 6px;
     height: 100%;
@@ -70,6 +70,22 @@
 }
 @media (max-width: 768px) {
   .mostViewedList {
-    max-height: 320px;
+    max-height: 620px;
   }
+}
+
+.itemWrapper {
+  display: flex;
+  gap: var(--padding);
+  padding: var(--padding) 0;
+}
+
+.banner {
+  box-shadow: 0px 0px 20px -10px #000;
+  width: 40%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: 0.2s ease-in-out;
+  border-radius: 10px;
 }

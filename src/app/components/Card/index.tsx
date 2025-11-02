@@ -29,16 +29,15 @@ export default function Card({
           <h3 className={styles.postTitle}>
             {post.title[locale] || post.title["am"]}
           </h3>
-          <p className={styles.content}>
+          {/* <p className={styles.content}>
             {post.content[locale]?.substring(0, 200) ||
               post.content["am"].substring(0, 200)}
             ...
-          </p>
+          </p> */}
           <p className={styles.views}>
             {post.views} {t("views")}
           </p>
 
-          {/* {t("read more")} */}
         </div>
       </div>
     </Link>

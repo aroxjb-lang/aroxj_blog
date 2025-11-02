@@ -1,0 +1,168 @@
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
+import Slider from "react-slick";
+import styles from "./styles.module.css";
+import Image from "next/image";
+import { BLOB_URL, Locales, PostInterface } from "@/app/lib/schemas";
+import { useTranslations } from "next-intl";
+import { IconButton } from "@mui/material";
+import ArrowBackRounded from "@mui/icons-material/ArrowBackRounded";
+import ArrowForwardRounded from "@mui/icons-material/ArrowForwardRounded";
+
+export default function BlogSlider({
+  data,
+  locale,
+}: {
+  data: PostInterface[];
+  locale: Locales;
+}) {
+  const t = useTranslations();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slider = useRef<Slider | null>(null);
+  const [settings, setSettings] = useState({
+    infinite: false,
+    dots: false,
+
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    pauseOnHover: true,
+    arrows: false,
+    className: "videoSlidre",
+    afterChange: (current: number) => {
+      setCurrentSlide(current);
+    },
+    mobileFirst: true,
+
+    responsive: [
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+    ],
+  });
+  useEffect(() => {
+    setSettings({
+      infinite: false,
+      dots: false,
+
+      speed: 500,
+      slidesToShow: 5,
+      slidesToScroll: 1,
+      pauseOnHover: true,
+      arrows: false,
+      className: "videoSlidre",
+      afterChange: (current: number) => {
+        setCurrentSlide(current);
+      },
+      mobileFirst: true,
+
+      responsive: [
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+          },
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+          },
+        },
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+          },
+        },
+      ],
+    });
+  }, []);
+
+  return (
+    <div className={styles.sliderWrapper}>
+      <Slider {...settings} ref={slider}>
+        {data.map((item) => (
+          <div className={styles.slide} key={item._id}>
+            <div className={styles.wrapper}>
+              <div className={styles.imageWrapper}>
+                <Image
+                  src={BLOB_URL + item.featured_media_paths[0]}
+                  width={300}
+                  height={200}
+                  alt="banner"
+                />
+              </div>
+              <div className={styles.textContent}>
+                <h3 className={styles.postTitle}>
+                  {item.title[locale] || item.title["am"]}
+                </h3>
+                {/* <p className={styles.content}>
+            {post.content[locale]?.substring(0, 200) ||
+              post.content["am"].substring(0, 200)}
+            ...
+          </p> */}
+                <p className={styles.views}>
+                  {item.views} {t("views")}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </Slider>
+      <div>
+        {" "}
+        <IconButton
+          onClick={() => slider.current?.slickGoTo(currentSlide - 1)}
+          disabled={currentSlide === 0}
+        >
+          <ArrowBackRounded />
+        </IconButton>
+        <IconButton
+          onClick={() => {
+            console.dir(slider.current);
+            slider.current?.slickGoTo(currentSlide + 1);
+          }}
+          //@ts-ignore
+          disabled={
+            currentSlide ===
+            data.length -
+              (slider.current &&
+                ("breakpoint" in slider.current.state &&
+                //@ts-ignore
+                slider.current.state.breakpoint
+                  ? //@ts-ignore
+                    slider.current.props.responsive.find(
+                      //@ts-ignore
+
+                      (item) =>
+                        //@ts-ignore
+                        item.breakpoint === slider.current.state.breakpoint
+                      //@ts-ignore
+                    )?.settings.slidesToShow
+                  : slider.current.props.slidesToShow))
+          }
+        >
+          {" "}
+          <ArrowForwardRounded />
+        </IconButton>
+      </div>
+    </div>
+  );
+}
