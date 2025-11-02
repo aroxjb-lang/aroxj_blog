@@ -16,7 +16,7 @@ import CloseRounded from "@mui/icons-material/CloseRounded";
 import SearchRounded from "@mui/icons-material/SearchRounded";
 import LanguageSwitcher from "../LanguageSwitcher";
 
-export default function index({
+export default function MobileMenu({
   routes,
   onClose,
 }: {

@@ -19,7 +19,7 @@ export default function BlogSlider({
 }) {
   const t = useTranslations();
   const [currentSlide, setCurrentSlide] = useState(0);
-  const slider = useRef<Slider | null>(null);
+  const slider = useRef<Slider>(null);
   const [settings, setSettings] = useState({
     infinite: false,
     dots: false,
@@ -97,7 +97,7 @@ export default function BlogSlider({
 
   return (
     <div className={styles.sliderWrapper}>
-      <Slider {...settings} ref={slider}>
+      <Slider ref={slider} {...settings}>
         {data.map((item) => (
           <div className={styles.slide} key={item._id}>
             <div className={styles.wrapper}>
@@ -139,22 +139,18 @@ export default function BlogSlider({
             console.dir(slider.current);
             slider.current?.slickGoTo(currentSlide + 1);
           }}
-          //@ts-ignore
           disabled={
             currentSlide ===
             data.length -
               (slider.current &&
-                ("breakpoint" in slider.current.state &&
-                //@ts-ignore
-                slider.current.state.breakpoint
-                  ? //@ts-ignore
+                // @ts-expect-error breakpoin error
+                (slider.current.state.breakpoint
+                  ? // @ts-expect-error breakpoin error
                     slider.current.props.responsive.find(
-                      //@ts-ignore
-
                       (item) =>
-                        //@ts-ignore
+                        // @ts-expect-error breakpoin error
                         item.breakpoint === slider.current.state.breakpoint
-                      //@ts-ignore
+                      // @ts-expect-error breakpoin error
                     )?.settings.slidesToShow
                   : slider.current.props.slidesToShow))
           }
