@@ -1,24 +1,59 @@
 .mostSection {
   display: flex;
-  gap: 20px;
+  gap: calc(2 * var(--padding));
   max-width: var(--container);
   margin: 0 auto;
   padding: var(--padding);
+  margin-top: 20px;
+}
+
+.blogSection {
+  background-color: var(--background-active);
+  overflow: hidden;
+}
+
+.blogWrapper {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: var(--padding);
+  /* margin-top: 20px; */
 }
 .mostViewWrapper {
-  flex: 1 200px;
-  margin-top: 10px;
+  flex: 2 400px;
 }
 .topPost {
-  flex: 10 700px;
+  flex: 3 600px;
+}
+.sectionTitle {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: var(--font-bebas-sans);
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.cards {
   display: flex;
   flex-wrap: wrap;
   width: calc(100% + 20px);
   margin: 0 -10px;
+
+  @media (max-width: 768px) {
+    width: calc(100% + 10px);
+    margin: 0 -5px;
+  }
 }
 .postItem {
-  width: 33%;
+  width: 50%;
   padding: 10px;
+  &:first-child {
+    width: 100%;
+    height: 100%;
+  }
 }
 @media (max-width: 1200px) {
   .postItem {
@@ -29,15 +64,14 @@
 @media (max-width: 768px) {
   .mostSection {
     flex-direction: column;
-    padding: calc(var(--padding) / 2);
   }
   .mostViewWrapper {
     margin-top: 0;
     margin-bottom: 20px;
   }
   .topPost {
-    width: calc(100% + 10px);
-    margin: 0 -5px;
+    width: 100%;
+    margin: 0;
   }
   .postItem {
     width: 50%;
