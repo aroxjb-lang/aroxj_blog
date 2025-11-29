@@ -7,3 +7,39 @@
     border: 1px solid #000;
   }
 }
+
+
+.link {
+  font-size: 16px;
+  text-transform: capitalize;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 10px 0;
+  gap: 5px;
+}
+.chevron {
+  transition: 0.2s ease-in-out;
+  opacity: 0.7;
+  &.rotate {
+    transform: rotate(180deg);
+  }
+}
+.dropdown {
+  position: relative;
+}
+.collapse {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  min-width: fit-content;
+  background-color: var(--background);
+  border-radius: 10px;
+  margin-top: 10px;
+  z-index: 10;
+  white-space: nowrap;
+
+  box-shadow: 0px 0px 20px -10px #000;
+}

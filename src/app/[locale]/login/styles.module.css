@@ -1,0 +1,40 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  margin: 0 auto;
+  img {
+    max-width: 250px;
+  }
+}
+.title {
+  font-size: 94px;
+  line-height: 96px;
+  font-weight: 900;
+  font-family: var(--font-bebas-sans);
+  color: var(--main);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.page {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.form {
+  display: flex;
+  min-width: 300px;
+  max-width: 500px;
+  width: 80%;
+  gap: 20px;
+
+  align-items: stretch;
+  justify-content: center;
+  flex-direction: column;
+}

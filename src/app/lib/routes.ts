@@ -1,5 +1,6 @@
 export enum Routes {
   HOME = "/",
+  ARCHIVE="/archive",
   NEWS = "/news",
   BLOG = "/blog",
   HEALTHY_FOOD = "/healthy-food",

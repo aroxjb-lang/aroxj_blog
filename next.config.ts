@@ -5,6 +5,16 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [new URL("https://aroxjblog.am/wp-content/uploads/**")],
   },
+  experimental: {
+    serverComponentsExternalPackages: ["mongoose"], 
+  },
+  
+  webpack: (config) => {
+    config.experiments = {
+      topLevelAwait: true,
+    };
+    return config;
+  },
 };
 
 const withNextIntl = createNextIntlPlugin();
