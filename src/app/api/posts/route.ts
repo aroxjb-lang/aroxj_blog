@@ -1,5 +1,5 @@
 import client from "@/app/lib/mongodb";
-import { SortDirection } from "mongodb";
+// import { SortDirection } from "mongodb";
 import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {

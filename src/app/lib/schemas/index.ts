@@ -8,6 +8,7 @@ export interface PostInterface {
   slug: string;
   content: MultilangualContentInterface;
   date: string;
+  featured_media_path?: string;
   featured_media_paths: string[];
   suggested_blob_paths: string[];
   hashtags: string[];

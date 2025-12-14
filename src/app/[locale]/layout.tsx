@@ -5,13 +5,12 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { setRequestLocale } from "next-intl/server";
-import Header from "../components/Header";
 import { Suspense } from "react";
-import MUIThemeProvider from "../lib/context/themeContext";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import localFont from "next/font/local";
-import Loading from "./loading";
+import MUIThemeProvider from "../lib/context/themeContext";
+import Loading from "../components/LoadingCircule";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,7 +45,6 @@ export default async function RootLayout({
       <body className={` ${bebas.className} ${geistSans.variable} `}>
         <NextIntlClientProvider>
           <MUIThemeProvider>
-            <Header />
             <Suspense fallback={<Loading />}>{children}</Suspense>
           </MUIThemeProvider>
         </NextIntlClientProvider>

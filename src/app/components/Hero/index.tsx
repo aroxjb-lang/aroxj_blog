@@ -14,7 +14,6 @@ const settings = {
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
-  pauseOnHover: true,
   arrows: false,
 };
 export default function Hero({

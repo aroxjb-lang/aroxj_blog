@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
 import React, { useEffect, useRef, useState } from "react";
-import Slider from "react-slick";
+import Slider, { Settings } from "react-slick";
 import styles from "./styles.module.css";
 import Image from "next/image";
 import { BLOB_URL, Locales, PostInterface } from "@/app/lib/schemas";
@@ -20,80 +20,79 @@ export default function BlogSlider({
   const t = useTranslations();
   const [currentSlide, setCurrentSlide] = useState(0);
   const slider = useRef<Slider>(null);
-  const [settings, setSettings] = useState({
-    infinite: false,
-    dots: false,
-
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    pauseOnHover: true,
-    arrows: false,
-    className: "videoSlidre",
-    afterChange: (current: number) => {
-      setCurrentSlide(current);
-    },
-    mobileFirst: true,
-
-    responsive: [
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-    ],
-  });
+  const [settings, setSettings] = useState<Settings | null>(null);
+  const [width, setWidth] = useState<number | null>(null);
   useEffect(() => {
-    setSettings({
-      infinite: false,
-      dots: false,
-
-      speed: 500,
-      slidesToShow: 5,
-      slidesToScroll: 1,
-      pauseOnHover: true,
-      arrows: false,
-      className: "videoSlidre",
-      afterChange: (current: number) => {
-        setCurrentSlide(current);
-      },
-      mobileFirst: true,
-
-      responsive: [
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-          },
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-          },
-        },
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-          },
-        },
-      ],
-    });
+    const getWidth = () => {
+      setWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", getWidth);
+    return () => {
+      window.removeEventListener("resize", getWidth);
+    };
   }, []);
+  useEffect(() => {
+    if (window.innerWidth < 480) {
+      setSettings({
+        infinite: false,
+        dots: false,
+
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        pauseOnHover: true,
+        arrows: false,
+        className: "videoSlidre",
+        afterChange: (current: number) => {
+          setCurrentSlide(current);
+        },
+      });
+    } else if (window.innerWidth < 600) {
+      setSettings({
+        infinite: false,
+        dots: false,
+
+        speed: 500,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        pauseOnHover: true,
+        arrows: false,
+        className: "videoSlidre",
+        afterChange: (current: number) => {
+          setCurrentSlide(current);
+        },
+      });
+    } else if (window.innerWidth < 1024) {
+      setSettings({
+        infinite: false,
+        dots: false,
+
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        pauseOnHover: true,
+        arrows: false,
+        className: "videoSlidre",
+        afterChange: (current: number) => {
+          setCurrentSlide(current);
+        },
+      });
+    } else {
+      setSettings({
+        infinite: false,
+        dots: false,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        pauseOnHover: true,
+        arrows: false,
+        className: "videoSlidre",
+        afterChange: (current: number) => {
+          setCurrentSlide(current);
+        },
+      });
+    }
+  }, [width]);
 
   return (
     <div className={styles.sliderWrapper}>

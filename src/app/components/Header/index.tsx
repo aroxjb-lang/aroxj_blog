@@ -1,4 +1,5 @@
 "use client";
+
 import styles from "./styles.module.css";
 import LanguageSwitcher from "../LanguageSwitcher";
 import { Link, usePathname } from "@/i18n/navigation";
@@ -33,7 +34,7 @@ const routes: (
   {
     title: "healthy lifestyle",
     subpages: [
-      { title: "beauty", slug: Routes.BEAUTY },
+      { title: "beauty", slug  : Routes.BEAUTY },
       { title: "body care", slug: Routes.BODY_CARE },
       { title: "healthy food", slug: Routes.HEALTHY_FOOD },
     ],
@@ -103,6 +104,8 @@ export default function Header() {
                     <div
                       className={styles.dropdown}
                       key={item.title}
+                      onMouseEnter={()=>setTitle(item.title)}
+                      onMouseLeave={()=>setTitle(null)}
                       onClick={() =>
                         setTitle(title === item.title ? null : item.title)
                       }

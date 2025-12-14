@@ -1,0 +1,129 @@
+.mostSection {
+  display: flex;
+  gap: calc(2 * var(--padding));
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: var(--padding);
+  margin-top: 20px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: calc(2 * var(--padding));
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: var(--padding);
+  margin-top: 20px;
+}
+.sectionCards {
+  display: flex;
+  flex-wrap: wrap;
+}
+.sectionItem {
+  padding: 10px 10px;
+  width: 25%;
+  @media (max-width: 1200px) {
+    width: 50%;
+  }
+}
+.blogSection {
+  background-color: var(--background-active);
+  overflow: hidden;
+}
+
+.blogWrapper {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: var(--padding);
+  /* margin-top: 20px; */
+}
+.mostViewWrapper {
+  flex: 2 400px;
+}
+.topPost {
+  flex: 3 600px;
+}
+.sectionTitle {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: var(--font-bebas-sans);
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(100% + 20px);
+  margin: 0 -10px;
+
+  @media (max-width: 768px) {
+    width: calc(100% + 10px);
+    margin: 0 -5px;
+  }
+}
+.postItem {
+  width: 50%;
+  padding: 10px;
+  &:first-child {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.pagination {
+  margin: var(--padding) auto;
+  width: fit-content;
+}
+
+.views {
+  color: var(--secondary-text);
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.post {
+  .postBanner {
+    width: 100%;
+    margin: 20px 0;
+    border-radius: 20px;
+  }
+  .content {
+    margin-top: 20px;
+    text-align: justify;
+  }
+}
+@media (max-width: 1200px) {
+  .postItem {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .mostSection {
+    flex-direction: column;
+  }
+  .mostViewWrapper {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  .topPost {
+    width: 100%;
+    margin: 0;
+  }
+  .postItem {
+    width: 50%;
+    padding: 5px;
+  }
+}
+@media (max-width: 500px) {
+  .postItem {
+    width: 100%;
+  }
+}

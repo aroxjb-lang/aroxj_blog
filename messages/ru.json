@@ -22,5 +22,18 @@
     "culture": "культура",
     "sport": "спорт",
     "travel news": "новости путешествий",
-    "recipe": "рецепт"
+    "recipe": "рецепт",
+    "All rights reserved":"Все права защищены.",
+    "Sitemap":"Карта сайта",
+    "Follow us":"Подписывайтесь на нас!",
+    "Archive":"Архив",
+    "Related news":"Related news",
+    "Email is required":"Email is required",
+    "invalid email":"invalid email",
+    "Email":"Email",
+    "Password is required":"Password is required",
+    "Password must have at least 6 symbols":"Password must have at least 6 symbols",
+    "Password":"Password",
+    "Sign in":"Sign in"
+
 }

@@ -17,14 +17,14 @@ export async function getTopPost({
   page = 1,
 }: {
   limit?: number;
-  page?: number;
+  page?: number|string;
 }): Promise<{ data: PostInterface[]; pagesCount: number }> {
   const postByID = await fetch(
-    `${process.env.NEXT_API_URL}/api/posts/top?limit=${limit}&page=${page}`,
-    { cache: "force-cache" }
-  );
+    `${process.env.NEXT_API_URL}/api/posts/top?limit=${limit}&page=${page}`  );
+  console.log(postByID);
 
   const post = await postByID.json();
+  
   return post;
 }
 export async function getArchivePost({
@@ -35,9 +35,7 @@ export async function getArchivePost({
   page?: number;
 }): Promise<{ data: PostInterface[]; pagesCount: number }> {
   const postByID = await fetch(
-    `${process.env.NEXT_API_URL}/api/posts/archive?limit=${limit}&page=${page}`,
-    { cache: "force-cache" }
-  );
+    `${process.env.NEXT_API_URL}/api/posts/archive?limit=${limit}&page=${page}`  );
 
   const post = await postByID.json();
   return post;

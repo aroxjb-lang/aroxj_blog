@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
   }
   let skipValue = (page - 1) * limit;
   const date = new Date();
-  date.setMonth(date.getMonth() - 3);
+  date.setMonth(date.getMonth() - 6);
   try {
     const db = await client?.db("aroxj-blog");
 
