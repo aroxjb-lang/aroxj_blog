@@ -21,8 +21,10 @@ export async function getTopPost({
 }): Promise<{ data: PostInterface[]; pagesCount: number }> {
   const postByID = await fetch(
     `${process.env.NEXT_API_URL}/api/posts/top?limit=${limit}&page=${page}`  );
+  console.log(postByID);
 
   const post = await postByID.json();
+  
   return post;
 }
 export async function getArchivePost({
