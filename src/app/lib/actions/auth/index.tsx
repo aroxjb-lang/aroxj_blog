@@ -32,11 +32,12 @@ export async function signup() {
 
 export async function logout() {
   await deleteSession();
-  redirect("/login");
+  redirect("/");
 }
 
 export async function login(data: AuthLoginInput) {
   try {
+    await dbConnect();
     const user = await User.findOne({ email: data.email });
     const isValidPass = await bcrypt.compare(data.password, user._doc.password);
     if (isValidPass) {

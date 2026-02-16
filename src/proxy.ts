@@ -31,7 +31,7 @@ function stripLocale(pathname: string, locale: string): string {
 }
 
 // 👇 main middleware
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const locale = getLocale(pathname);
@@ -42,7 +42,6 @@ export function middleware(request: NextRequest) {
   // read your auth info (replace with your own logic)
   // Example: cookie-based auth
   const token = request.cookies.get("session")?.value; // <-- change cookie name
-  console.log(token, pathWithoutLocale, isProtected);
 
   // If route is protected and user is NOT authenticated -> redirect to /[locale]/login
   if (isProtected && !token) {

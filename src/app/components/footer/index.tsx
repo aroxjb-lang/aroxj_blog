@@ -4,6 +4,8 @@ import { Routes } from "@/app/lib/routes";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { getSocials } from "@/app/lib/actions/socialMedias";
+import { BLOB_URL } from "@/app/lib/schemas";
 const routes: (
   | { title: string; subpages: { title: string; slug: Routes }[] }
   | {
@@ -21,6 +23,10 @@ const routes: (
       {
         title: "Archive",
         slug: Routes.ARCHIVE,
+      },
+      {
+        title: "About us",
+        slug: Routes.ABOUT_US,
       },
     ],
   },
@@ -57,8 +63,16 @@ const routes: (
     ],
   },
 ];
-export default function Footer() {
+export default function Footer({
+  socialMedias,
+}: {
+  socialMedias: {
+    icon: string;
+    url: string;
+  }[];
+}) {
   const t = useTranslations();
+
   return (
     <div className={styles.footer}>
       <div className={styles.container}>
@@ -98,6 +112,18 @@ export default function Footer() {
           </div>
           <div className={styles.followUs}>
             <h3 className={styles.footerTitle}>{t("Follow us")}</h3>
+            <div className={styles.icons}>
+              {socialMedias.map((item) => (
+                <Link
+                  key={item.url}
+                  href={item.url}
+                  target="_blank"
+                  className={styles.icon}
+                >
+                  <img src={BLOB_URL + item.icon} alt={item.url} />
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
         <div className={styles.copyright}>

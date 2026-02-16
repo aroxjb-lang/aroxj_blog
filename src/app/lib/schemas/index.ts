@@ -5,16 +5,39 @@ export type MultilangualContentInterface = Record<Locales, string>;
 export interface PostInterface {
   _id: number;
   title: MultilangualContentInterface;
-  slug: string;
   content: MultilangualContentInterface;
   date: string;
   featured_media_path?: string;
+  video_url: string;
   featured_media_paths: string[];
   suggested_blob_paths: string[];
+  createdAt: string;
+  updatedAt: string;
+  slug: string;
+
   hashtags: string[];
   category: string;
-  video_url: string;
   views: number;
 }
 
-export const BLOB_URL = "https://aroxjblog.am/wp-content/uploads/";
+export enum Categories {
+  POST = "post",
+  BLOG = "blog",
+  BEAUTY = "beauty",
+  BODY_CARE = "body_care",
+  TRAVEL_NEWS = "travel_news",
+  HEALTY_FOOD = "healty_food",
+  DISEASES = "diseases",
+  PSYCHOLOGY = "psychology",
+  INTERVIEWS = "interviews",
+  CHILD_CARE = "child_care",
+  MEDICINE_OF_THE_FUTURE = "medicine_of_the_future",
+  PROGRAM = "program",
+  ANNOUNCEMENT = "announcement",
+  CULTURE = "culture",
+  SPORT = "sport",
+  RECIPE = "recipe",
+}
+
+export const BLOB_URL =
+  "https://nnqeytgn7ealljhf.public.blob.vercel-storage.com/";

@@ -4,7 +4,7 @@ import Hero from "../../components/Hero";
 import MostViewed from "../../components/MostViewed";
 import { Suspense } from "react";
 import LoadingCircule from "../../components/LoadingCircule";
-import { Locales } from "../../lib/schemas";
+import { Categories, Locales } from "../../lib/schemas";
 import Card from "../../components/Card";
 import { getTranslations } from "next-intl/server";
 import BlogSlider from "../../components/BlogSlider";
@@ -17,16 +17,24 @@ export default async function Home({
   const t = await getTranslations();
   const { locale } = await params;
   const { data } = await getTopPost({ limit: 12, page: 1 });
+  const [medInfoData, beautyData, diseasesData, entertainmentData] =
+    await Promise.all([
+      getTopPost({ limit: 10, category: Categories.PROGRAM }),
+      getTopPost({ limit: 10, category: Categories.BEAUTY }),
+      getTopPost({ limit: 10, category: Categories.DISEASES }),
+      getTopPost({ limit: 10, category: Categories.ANNOUNCEMENT }),
+    ]);
+
   const heroData = data.splice(0, 5);
   return (
     <div className={styles.page}>
-      <Hero data={heroData} locale={locale} />
+      <Hero data={structuredClone(heroData)} locale={locale} />
       <section className={styles.mostSection}>
         <div className={styles.topPost}>
           <h3 className={styles.sectionTitle}> {t("recent posts")}</h3>
           <div className={styles.cards}>
             {data.map((post) => (
-              <div key={post._id} className={styles.postItem}>
+              <div key={post.slug} className={styles.postItem}>
                 <Card locale={locale} post={post} />
               </div>
             ))}
@@ -41,14 +49,17 @@ export default async function Home({
       <section className={styles.blogSection}>
         <div className={styles.blogWrapper}>
           <h3 className={styles.sectionTitle}>{t("med info")}</h3>
-          <BlogSlider data={data} locale={locale} />
+          <BlogSlider
+            data={structuredClone(medInfoData.data)}
+            locale={locale}
+          />
         </div>
       </section>
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}> {t("healthy lifestyle")}</h3>
         <div className={styles.sectionCards}>
-          {heroData.slice(0, 4).map((post) => (
-            <div key={post._id} className={styles.sectionItem}>
+          {beautyData.data.map((post) => (
+            <div key={post.slug} className={styles.sectionItem}>
               <Card locale={locale} post={post} />
             </div>
           ))}
@@ -57,8 +68,8 @@ export default async function Home({
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}> {t("diseases")}</h3>
         <div className={styles.sectionCards}>
-          {heroData.slice(0, 4).map((post) => (
-            <div key={post._id} className={styles.sectionItem}>
+          {diseasesData.data.map((post) => (
+            <div key={post.slug} className={styles.sectionItem}>
               <Card locale={locale} post={post} />
             </div>
           ))}
@@ -67,8 +78,8 @@ export default async function Home({
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}> {t("entertainment")}</h3>
         <div className={styles.sectionCards}>
-          {heroData.slice(0, 4).map((post) => (
-            <div key={post._id} className={styles.sectionItem}>
+          {entertainmentData.data.map((post) => (
+            <div key={post.slug} className={styles.sectionItem}>
               <Card locale={locale} post={post} />
             </div>
           ))}

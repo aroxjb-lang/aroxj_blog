@@ -7,6 +7,7 @@ import React, { Suspense } from "react";
 import MostViewed from "@/app/components/MostViewed";
 import LoadingCircule from "@/app/components/LoadingCircule";
 import Card from "@/app/components/Card";
+import { YouTubeEmbed } from "@next/third-parties/google";
 
 export default async function PostByID({
   params,
@@ -16,11 +17,10 @@ export default async function PostByID({
   const { post_id, locale } = await params;
   const t = await getTranslations();
   try {
-    const data = await getPostByID(post_id);
+    const data = await getPostByID(decodeURIComponent(post_id));
     const { data: closeData } = await getTopPost({ limit: 4, page: 1 });
 
     if (!data) return redirect({ href: "/", locale });
-    console.log(data);
 
     return (
       <div>
@@ -45,7 +45,16 @@ export default async function PostByID({
                 <p className={styles.views}>
                   {data.views} {t("views")}
                 </p>
-                <p className={styles.content}>{data.content[locale] || data.content.am}</p>
+                <p className={styles.content}>
+                  {data.content[locale] || data.content.am}
+                </p>
+                {data.video_url &&
+                  data.video_url !== "" &&
+                  data.video_url[0] !== "" && (
+                    <div className={styles.videoContainer}>
+                      <YouTubeEmbed videoid={data.video_url} />
+                    </div>
+                  )}{" "}
               </div>
             </div>
             <div className={styles.mostViewWrapper}>
@@ -59,7 +68,7 @@ export default async function PostByID({
             <h3 className={styles.sectionTitle}> {t("Related news")}</h3>
             <div className={styles.sectionCards}>
               {closeData.map((post) => (
-                <div key={post._id} className={styles.sectionItem}>
+                <div key={post.slug} className={styles.sectionItem}>
                   <Card locale={locale} post={post} />
                 </div>
               ))}

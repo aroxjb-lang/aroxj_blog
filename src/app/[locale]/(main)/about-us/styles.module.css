@@ -1,0 +1,37 @@
+.page {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 32px;
+  max-width: var(--container);
+  margin: 0 auto -40px;
+  padding: 100px var(--padding) 160px;
+  overflow: hidden;
+  position: relative;
+}
+
+.title {
+  font-size: 32px;
+  font-family: var(--font-bebas-sans);
+  font-weight: 600;
+  color: var(--main);
+}
+.description {
+  font-size: 18px;
+  text-align: justify;
+}
+
+.background {
+  position: absolute;
+  z-index: -2;
+  height: auto;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background-image: url(/logo.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  opacity: .2;
+}

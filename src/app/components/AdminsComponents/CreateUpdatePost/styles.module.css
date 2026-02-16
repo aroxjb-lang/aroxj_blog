@@ -1,0 +1,100 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.actionsBottom {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 32px;
+  background-color: var(--background);
+  border-radius: 16px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px;
+  background-color: var(--background);
+  border-radius: 16px;
+  .title {
+    font-size: 24px;
+    font-weight: 600;
+  }
+}
+
+.medias {
+  padding: 32px;
+  background-color: var(--background);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.subTitle {
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+}
+
+.videoinput {
+  max-width: 400px;
+  margin-bottom: 16px;
+}
+.video {
+  display: flex;
+  flex-direction: column;
+}
+.videoContainer {
+  margin-top: 16px;
+  border-radius: 16px;
+  overflow: hidden;
+  max-width: 400;
+}
+
+.section {
+  padding: 32px;
+  background-color: var(--background);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  .label {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+.multilangualInputs {
+  display: flex;
+  gap: 32px;
+}
+
+
+.hashtags{
+    display: flex;
+    gap: 16px;
+}
+.tag{
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    padding: 8px 8px 8px 16px;
+    border-radius: 16px;
+    background-color: var(--background-active);
+}
