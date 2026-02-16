@@ -20,6 +20,7 @@
 .description {
   font-size: 18px;
   text-align: justify;
+  white-space: pre-wrap;
 }
 
 .background {
@@ -33,5 +34,5 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  opacity: .2;
+  opacity: 0.2;
 }
