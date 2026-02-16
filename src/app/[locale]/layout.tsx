@@ -11,6 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 import localFont from "next/font/local";
 import MUIThemeProvider from "../lib/context/themeContext";
 import Loading from "../components/LoadingCircule";
+import dbConnect from "../lib/mongoose";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

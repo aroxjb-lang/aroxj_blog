@@ -3,6 +3,7 @@
   --foreground: #171717;
   --secondary-text: #17171771;
   --main: #37a711;
+  --red:#d62828;
   --background-active: #37a71114;
   --font-bebas-sans: "bebas";
   --container: 1500px;
@@ -15,6 +16,7 @@ body {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  
   
 }
 

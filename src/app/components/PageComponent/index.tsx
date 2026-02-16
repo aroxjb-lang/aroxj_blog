@@ -11,9 +11,10 @@ import Pagination from "../Pagination";
 interface Props {
   data: PostInterface[];
   locale: Locales;
+  pagesCount: number;
 }
 
-export default function PageComponent({ data, locale }: Props) {
+export default function PageComponent({ data, locale, pagesCount }: Props) {
   const t = useTranslations();
   const newData = [...data];
   const heroData = newData.splice(0, 7);
@@ -22,10 +23,10 @@ export default function PageComponent({ data, locale }: Props) {
     <div className={styles.page}>
       <section className={styles.mostSection}>
         <div className={styles.topPost}>
-          <h3 className={styles.sectionTitle}> {t("recent posts")}</h3>
+          {/* <h3 className={styles.sectionTitle}> {t("recent posts")}</h3> */}
           <div className={styles.cards}>
             {heroData.map((post) => (
-              <div key={post._id} className={styles.postItem}>
+              <div key={post.slug} className={styles.postItem}>
                 <Card locale={locale} post={post} />
               </div>
             ))}
@@ -39,18 +40,20 @@ export default function PageComponent({ data, locale }: Props) {
       </section>
 
       <section className={styles.section}>
-        <h3 className={styles.sectionTitle}> {t("healthy lifestyle")}</h3>
+        {/* <h3 className={styles.sectionTitle}> {t("healthy lifestyle")}</h3> */}
         <div className={styles.sectionCards}>
           {newData.map((post) => (
-            <div key={post._id} className={styles.sectionItem}>
+            <div key={post.slug} className={styles.sectionItem}>
               <Card locale={locale} post={post} />
             </div>
           ))}
         </div>
       </section>
-      <div className={styles.pagination}>
-        <Pagination count={10} />
-      </div>
+      {pagesCount > 1 && (
+        <div className={styles.pagination}>
+          <Pagination count={pagesCount} />
+        </div>
+      )}
     </div>
   );
 }

@@ -6,7 +6,9 @@
   padding: var(--padding);
   margin-top: 20px;
 }
-
+.videoContainer{
+  padding: 32px 0;
+}
 .section {
   display: flex;
   flex-direction: column;

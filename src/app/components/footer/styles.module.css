@@ -92,3 +92,24 @@
 .link {
   text-transform: capitalize;
 }
+
+.icons {
+  display: flex;
+  gap: 8px;
+
+  .icon {
+    height: 48px;
+    background-color: var(--main);
+    opacity: 0.8;
+    padding: 12px;
+    border-radius: 64px;
+    transition: .3s ease-in-out;
+    &:hover {
+      opacity: 1;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

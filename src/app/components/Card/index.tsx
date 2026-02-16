@@ -14,12 +14,14 @@ export default function Card({
   post: PostInterface;
 }) {
   const t = useTranslations();
+  const date = new Date(post.updatedAt?post.updatedAt:post.date );
+
   return (
     <Link href={post.slug}>
       <div className={styles.wrapper}>
         <div className={styles.imageWrapper}>
           <Image
-            src={BLOB_URL + post.featured_media_paths[0]}
+            src={BLOB_URL + (Array.isArray(post.featured_media_paths)?post.featured_media_paths[0]:post.featured_media_paths)}
             width={300}
             height={200}
             alt="banner"
@@ -36,6 +38,9 @@ export default function Card({
           </p> */}
           <p className={styles.views}>
             {post.views} {t("views")}
+          </p>
+          <p className={styles.views}>
+            {date.getDate()} {date.toLocaleString(locale==='am'?'hy':locale, { month: "long" }).toUpperCase()}{" "}{date.getFullYear()}
           </p>
 
         </div>

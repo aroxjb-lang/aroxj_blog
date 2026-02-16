@@ -18,7 +18,7 @@ export default async function MostViewed({ locale }: { locale: Locales }) {
           <Link
             href={post.slug}
             prefetch
-            key={post._id}
+            key={post.slug}
           >
             <div className={styles.itemWrapper}>
               <Image

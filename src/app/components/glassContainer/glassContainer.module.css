@@ -1,0 +1,20 @@
+.liquidGlassWrapper {
+  overflow: hidden;
+  transition: opacity 0.26s ease-out;
+  filter: drop-shadow(-8px -10px 46px #0000005f);
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: brightness(1.2) blur(5px) url(#displacementFilter);
+  box-shadow: 0px 0px 20px -6px #fff;
+  margin: 1px;
+}
+
+.liquidGlassWrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  border-radius: 28px;
+  -webkit-box-shadow: 8px 12px 28px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 8px 12px 28px 0 rgba(0, 0, 0, 0.06);
+}

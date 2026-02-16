@@ -74,6 +74,7 @@ export default function Header() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
+        
         <Link href={Routes.HOME} className={styles.logo}>
           <Image src={"/logo.png"} width={64} height={64} alt="logo" />
           <p className={styles.title}>
