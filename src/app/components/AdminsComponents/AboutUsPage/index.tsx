@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import Button from "@mui/material/Button";
 import SaveIcon from "@mui/icons-material/Save";
 import TextField from "@mui/material/TextField";
-import { creatAboutUs, updateAboutUs } from "@/app/lib/actions/aboutUs";
+import {  updateAboutUs } from "@/app/lib/actions/aboutUs";
 import { toast } from "react-toastify";
 
 export default function AboutUsPage({
@@ -19,7 +19,7 @@ export default function AboutUsPage({
   const t = useTranslations();
   const [values, setValues] = useState(data[0].text);
   const handleCancel = () => {
-    setValues(data[0].text)
+    setValues(data[0].text);
   };
   const handleSave = async () => {
     try {

@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "dev": "next dev ",
+    "build": "next build ",
     "start": "next start",
     "lint": "eslint"
   },
@@ -15,6 +15,18 @@
     "@mui/material": "^7.3.4",
     "@mui/material-nextjs": "^7.3.8",
     "@next/third-parties": "^16.1.6",
+    "@tiptap/extension-bubble-menu": "^3.20.0",
+    "@tiptap/extension-color": "^3.20.0",
+    "@tiptap/extension-dropcursor": "^3.20.0",
+    "@tiptap/extension-highlight": "^3.20.0",
+    "@tiptap/extension-image": "^3.20.0",
+    "@tiptap/extension-link": "^3.20.0",
+    "@tiptap/extension-placeholder": "^3.20.0",
+    "@tiptap/extension-text-align": "^3.20.0",
+    "@tiptap/extension-text-style": "^3.20.0",
+    "@tiptap/extension-underline": "^3.20.0",
+    "@tiptap/react": "^3.20.0",
+    "@tiptap/starter-kit": "^3.20.0",
     "@types/bcrypt": "^6.0.0",
     "@types/mongoose": "^5.11.96",
     "@types/react-slick": "^0.23.13",
@@ -32,7 +44,8 @@
     "react-hook-form": "^7.67.0",
     "react-slick": "^0.31.0",
     "react-toastify": "^11.0.5",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "tiptap-extension-resize-image": "^1.3.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

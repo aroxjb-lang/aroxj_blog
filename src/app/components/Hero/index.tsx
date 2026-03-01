@@ -41,8 +41,8 @@ export default function Hero({
                   />
                   {item.title[locale] || item.title.am}
                 </h3>
-                <p className={styles.content}>
-                  {item.content[locale] || item.content.am}{" "}
+                <p className={styles.content} dangerouslySetInnerHTML={{__html:item.content[locale] || item.content.am}}>
+                  {/* {item.content[locale] || item.content.am}{" "} */}
                 </p>
                 <Link href={item.slug} className={styles.link} prefetch={true}>
                   {t("read more")}

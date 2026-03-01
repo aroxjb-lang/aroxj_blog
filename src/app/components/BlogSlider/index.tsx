@@ -9,6 +9,7 @@ import { useTranslations } from "next-intl";
 import { IconButton } from "@mui/material";
 import ArrowBackRounded from "@mui/icons-material/ArrowBackRounded";
 import ArrowForwardRounded from "@mui/icons-material/ArrowForwardRounded";
+import { useRouter } from "@/i18n/navigation";
 
 export default function BlogSlider({
   data,
@@ -20,6 +21,7 @@ export default function BlogSlider({
   const t = useTranslations();
   const [currentSlide, setCurrentSlide] = useState(0);
   const slider = useRef<Slider>(null);
+  const router = useRouter()
   const [settings, setSettings] = useState<Settings | null>(null);
   const [width, setWidth] = useState<number | null>(null);
   useEffect(() => {
@@ -98,7 +100,7 @@ export default function BlogSlider({
     <div className={styles.sliderWrapper}>
       <Slider ref={slider} {...settings}>
         {data.map((item) => (
-          <div className={styles.slide} key={item._id}>
+          <div className={styles.slide} key={item._id} onClick={()=>router.push('/'+item.slug)}>
             <div className={styles.wrapper}>
               <div className={styles.imageWrapper}>
                 <Image

@@ -7,7 +7,11 @@ import { Content } from "next/font/google";
 import { Aggregate, PipelineStage } from "mongoose";
 export async function getPostByID(post_id: string): Promise<PostInterface> {
   await dbConnect();
-  const postByID = await Contents.findOne({ slug: post_id });
+  const postByID = await Contents.findOneAndUpdate(
+    { slug: post_id },
+    { $inc: { views: 1 } },
+    { new: true },
+  );
   return JSON.parse(JSON.stringify(postByID));
 }
 export async function deletePost(post_id: string): Promise<PostInterface> {

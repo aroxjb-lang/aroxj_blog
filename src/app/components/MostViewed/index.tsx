@@ -32,8 +32,8 @@ export default async function MostViewed({ locale }: { locale: Locales }) {
                 <h5 className={styles.postTitle}>
                   {post.title[locale] || post.title["am"]}
                 </h5>
-                <p className={styles.content}>
-                  {post.content[locale] || post.content["am"]}
+                <p className={styles.content} dangerouslySetInnerHTML={{__html:post.content[locale] || post.content.am}}>
+                  {/* {post.content[locale] || post.content["am"]} */}
                 </p>
                 <p className={styles.views}>
                   {post.views} {t("views")}
