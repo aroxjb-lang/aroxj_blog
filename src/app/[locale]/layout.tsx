@@ -12,6 +12,7 @@ import localFont from "next/font/local";
 import MUIThemeProvider from "../lib/context/themeContext";
 import Loading from "../components/LoadingCircule";
 import dbConnect from "../lib/mongoose";
+import { signup } from "../lib/actions/auth";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,7 +41,6 @@ export default async function RootLayout({
     notFound();
   }
   setRequestLocale(locale);
-
   return (
     <html lang={locale}>
       <body className={` ${bebas.className} ${geistSans.variable} `}>

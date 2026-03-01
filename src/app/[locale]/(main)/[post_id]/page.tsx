@@ -45,8 +45,8 @@ export default async function PostByID({
                 <p className={styles.views}>
                   {data.views} {t("views")}
                 </p>
-                <p className={styles.content}>
-                  {data.content[locale] || data.content.am}
+                <p className={styles.content} dangerouslySetInnerHTML={{__html:data.content[locale] || data.content.am}}>
+                  {/* {data.content[locale] || data.content.am} */}
                 </p>
                 {data.video_url &&
                   data.video_url !== "" &&

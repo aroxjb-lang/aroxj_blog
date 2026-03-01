@@ -85,6 +85,11 @@
   gap: 32px;
 }
 
+.multilangualInputsColumn{
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
 
 .hashtags{
     display: flex;

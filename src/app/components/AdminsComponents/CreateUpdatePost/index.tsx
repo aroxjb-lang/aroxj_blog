@@ -21,10 +21,10 @@ import AddIcon from "@mui/icons-material/Add";
 import SaveIcon from "@mui/icons-material/Save";
 import { YouTubeEmbed } from "@next/third-parties/google";
 import CategoriesSelect from "../../CategoriesSelect";
-import { set } from "mongoose";
 import { deleteFromBlob, uploadToBlob } from "@/app/lib/actions/file";
 import { useRouter } from "@/i18n/navigation";
 import { toast } from "react-toastify";
+import TextEditor from "../../TextEditor";
 
 export default function CreateUpdatePost({
   data,
@@ -44,6 +44,9 @@ export default function CreateUpdatePost({
   const router = useRouter();
   const [hashtags, setHashtags] = useState<string>("");
   const [files, setFiles] = useState<File[]>([]);
+  const [am, setAm] = useState("");
+  const [ru, setRu] = useState("");
+  const [en, setEn] = useState("");
   const [values, setValues] = useState<
     Omit<
       PostInterface,
@@ -76,7 +79,7 @@ export default function CreateUpdatePost({
       const payload = {
         ...values,
         date: `${new Date()}`,
-        video_url:values.video_url,
+        video_url: values.video_url,
         featured_media_paths: newFiles,
       };
       createPost(payload)
@@ -108,7 +111,12 @@ export default function CreateUpdatePost({
 
       const payload = {
         ...values,
-        video_url:values.video_url,
+        content: {
+          am,
+          en,
+          ru,
+        },
+        video_url: values.video_url,
         date: `${new Date()}`,
         featured_media_paths: newFiles,
       };
@@ -214,11 +222,13 @@ export default function CreateUpdatePost({
             name="video_url"
           />
 
-          {values.video_url && values.video_url !== ""&&values.video_url[0]!=="" && (
-            <div className={styles.videoContainer}>
-              <YouTubeEmbed videoid={values.video_url} />
-            </div>
-          )}
+          {values.video_url &&
+            values.video_url !== "" &&
+            values.video_url[0] !== "" && (
+              <div className={styles.videoContainer}>
+                <YouTubeEmbed videoid={values.video_url} />
+              </div>
+            )}
         </div>
       </div>
       <div className={styles.section}>
@@ -268,11 +278,36 @@ export default function CreateUpdatePost({
         </label>
         <label className={styles.inputContainer}>
           <p className={styles.label}>{t("Content")}:</p>
-          <div className={styles.multilangualInputs}>
-            <TextField
+          {/* <p dangerouslySetInnerHTML={{ __html: am }} /> */}
+          <div className={styles.multilangualInputsColumn}>
+            <p className={styles.label}>AM:</p>
+
+            <TextEditor
+              value={values.content.am}
+              onChange={(html) => {
+                setAm(html);
+              }}
+            />
+            <p className={styles.label}>RU:</p>
+
+            <TextEditor
+              value={values.content.ru}
+              onChange={(html) => {
+                setRu(html);
+              }}
+            />
+            <p className={styles.label}>EN:</p>
+
+            <TextEditor
+              value={values.content.en}
+              onChange={(html) => {
+                setEn(html);
+              }}
+            />
+            {/* <TextField
               fullWidth
               label="am"
-              value={values.content.am}
+              value={}
               minRows={3}
               maxRows={15}
               multiline
@@ -282,8 +317,8 @@ export default function CreateUpdatePost({
                   content: { ...values.content, am: e.target.value },
                 });
               }}
-            />
-            <TextField
+            /> */}
+            {/* <TextField
               fullWidth
               label="en"
               value={values.content.en}
@@ -310,7 +345,7 @@ export default function CreateUpdatePost({
                   content: { ...values.content, ru: e.target.value },
                 });
               }}
-            />
+            /> */}
           </div>
         </label>
         <div className={styles.multilangualInputs}>
