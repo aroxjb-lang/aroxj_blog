@@ -3,8 +3,6 @@ import "server-only";
 import dbConnect from "../../mongoose";
 import { PostInterface } from "../../schemas";
 import Contents from "../../models/postModel";
-import { Content } from "next/font/google";
-import { Aggregate, PipelineStage } from "mongoose";
 export async function getPostByID(post_id: string): Promise<PostInterface> {
   await dbConnect();
   const postByID = await Contents.findOneAndUpdate(
