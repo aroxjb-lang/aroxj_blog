@@ -22,7 +22,7 @@ export default async function Home({
       getTopPost({ limit: 10, category: Categories.PROGRAM }),
       getTopPost({ limit: 10, category: Categories.BEAUTY }),
       getTopPost({ limit: 10, category: Categories.DISEASES }),
-      getTopPost({ limit: 10, category: Categories.ANNOUNCEMENT }),
+      getTopPost({ limit: 10, category: Categories.CULTURE }),
     ]);
 
   const heroData = data.splice(0, 5);
@@ -57,33 +57,34 @@ export default async function Home({
       </section>
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}> {t("healthy lifestyle")}</h3>
-        <div className={styles.sectionCards}>
+         <BlogSlider
+            data={structuredClone(beautyData.data)}
+            locale={locale}
+          />
+        {/* <div className={styles.sectionCards}>
+
           {beautyData.data.map((post) => (
             <div key={post.slug} className={styles.sectionItem}>
               <Card locale={locale} post={post} />
             </div>
           ))}
-        </div>
+        </div> */}
       </section>
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}> {t("diseases")}</h3>
-        <div className={styles.sectionCards}>
-          {diseasesData.data.map((post) => (
-            <div key={post.slug} className={styles.sectionItem}>
-              <Card locale={locale} post={post} />
-            </div>
-          ))}
-        </div>
+        <BlogSlider
+            data={structuredClone(diseasesData.data)}
+            locale={locale}
+          />
+       
       </section>
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}> {t("entertainment")}</h3>
-        <div className={styles.sectionCards}>
-          {entertainmentData.data.map((post) => (
-            <div key={post.slug} className={styles.sectionItem}>
-              <Card locale={locale} post={post} />
-            </div>
-          ))}
-        </div>
+        <BlogSlider
+            data={structuredClone(entertainmentData.data)}
+            locale={locale}
+          />
+        
       </section>
     </div>
   );
