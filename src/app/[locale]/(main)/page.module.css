@@ -17,6 +17,7 @@
   margin: 0 auto;
   padding: var(--padding);
   margin-top: 20px;
+  overflow: hidden;
 }
 .sectionCards {
   display: flex;
@@ -41,6 +42,8 @@
   max-width: var(--container);
   margin: 0 auto;
   padding: var(--padding);
+  overflow: hidden !important;
+  max-width: 100%;
   /* margin-top: 20px; */
 }
 .mostViewWrapper {
@@ -72,6 +75,8 @@
 .postItem {
   width: 50%;
   padding: 10px;
+      height: 100%;
+
   &:first-child {
     width: 100%;
     height: 100%;
@@ -105,6 +110,8 @@
 @media (max-width: 1200px) {
   .postItem {
     width: 50%;
+        height: 100%;
+
   }
 }
 

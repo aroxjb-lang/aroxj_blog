@@ -13,6 +13,7 @@ import MUIThemeProvider from "../lib/context/themeContext";
 import Loading from "../components/LoadingCircule";
 import dbConnect from "../lib/mongoose";
 import { signup } from "../lib/actions/auth";
+import Head from "next/head";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,6 +44,18 @@ export default async function RootLayout({
   setRequestLocale(locale);
   return (
     <html lang={locale}>
+      <Head>
+        <script>window.yaContextCb = window.yaContextCb || []</script>
+<script src="https://yandex.ru/ads/system/context.js" async></script>
+<script>
+    const nnlJS = document.createElement('script'); 
+    nnlJS.src = "https://ads.caramel.am/nnl.js?ts="+new Date().getTime();
+    nnlJS.async = true;
+    document.head.appendChild(nnlJS);
+</script>
+
+
+      </Head>
       <body className={` ${bebas.className} ${geistSans.variable} `}>
         <NextIntlClientProvider>
           <MUIThemeProvider>

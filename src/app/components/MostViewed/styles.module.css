@@ -42,6 +42,8 @@
 }
 .postItem {
   padding: 10px 0 0;
+  height: 100%;
+
   &:not(:last-child) {
     padding: 10px 0;
     border-bottom: 1px solid var(--main);

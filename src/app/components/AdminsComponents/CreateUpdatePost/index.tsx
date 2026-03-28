@@ -117,7 +117,6 @@ export default function CreateUpdatePost({
           ru,
         },
         video_url: values.video_url,
-        date: `${new Date()}`,
         featured_media_paths: newFiles,
       };
       updatePostByID(decodeURIComponent(slug as string), payload)
