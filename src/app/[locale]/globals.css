@@ -166,3 +166,6 @@ a {
 p:empty {
   min-height: 1.5em;
 }
+.slick-track{
+  margin: 0 !important;
+}
