@@ -17,7 +17,7 @@ export default function AboutUsPage({
   }[];
 }) {
   const t = useTranslations();
-  const [values, setValues] = useState(data[0].text);
+  const [values, setValues] = useState(data[0]?.text??'');
   const handleCancel = () => {
     setValues(data[0].text);
   };

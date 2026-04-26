@@ -2,7 +2,7 @@ import { getMostViewedPost } from "@/app/lib/actions/posts";
 import { getTranslations } from "next-intl/server";
 import React from "react";
 import styles from "./styles.module.css";
-import { BLOB_URL, Locales } from "@/app/lib/schemas";
+import {  Locales } from "@/app/lib/schemas";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 
@@ -22,7 +22,7 @@ export default async function MostViewed({ locale }: { locale: Locales }) {
           >
             <div className={styles.itemWrapper}>
               <Image
-                src={BLOB_URL + post.featured_media_paths[0]}
+                src={post.featured_media_paths[0]}
                 width={300}
                 height={200}
                 alt="banner"

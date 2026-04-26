@@ -30,7 +30,6 @@
     "@types/bcrypt": "^6.0.0",
     "@types/mongoose": "^5.11.96",
     "@types/react-slick": "^0.23.13",
-    "@vercel/blob": "^2.0.0",
     "@vercel/functions": "^3.1.0",
     "bcrypt": "^6.0.0",
     "classnames": "^2.5.1",

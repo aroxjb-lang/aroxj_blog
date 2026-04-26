@@ -1,5 +1,5 @@
 import { getPostByID, getTopPost } from "@/app/lib/actions/posts";
-import { BLOB_URL, Locales } from "@/app/lib/schemas";
+import {  Locales } from "@/app/lib/schemas";
 import { redirect } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 import styles from "../page.module.css";
@@ -34,7 +34,7 @@ export default async function PostByID({
               <div className={styles.post}>
                 <img
                   src={
-                    BLOB_URL +
+                  
                     ("featured_media_path" in data
                       ? data.featured_media_path
                       : data.featured_media_paths[0])

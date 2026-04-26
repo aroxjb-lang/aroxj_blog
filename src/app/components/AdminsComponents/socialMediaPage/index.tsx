@@ -9,14 +9,14 @@ import { useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import UploadFileInput from "../../UploadFileInput";
 import { useSearchParams } from "next/navigation";
-import { deleteFromBlob, uploadToBlob } from "@/app/lib/actions/file";
+import { uploadToVps, deleteFromVps } from "@/app/lib/actions/file";
 import {
   creatSocial,
   deleteSocial,
   updateSocial,
 } from "@/app/lib/actions/socialMedias";
 import { toast } from "react-toastify";
-import { BLOB_URL } from "@/app/lib/schemas";
+
 import DeleteModal from "../../DeleteModal";
 
 export default function SocialMediaPage({
@@ -54,7 +54,7 @@ export default function SocialMediaPage({
       if (!value || !file)
         return toast.error("please fill all fields", { autoClose: 1000 });
 
-      const fileUrl = await uploadToBlob(file);
+      const fileUrl = await uploadToVps(file);
       const payload = { url: value, icon: fileUrl.pathname };
       await creatSocial(payload);
       toast.success("Created", { autoClose: 1000 });
@@ -65,8 +65,8 @@ export default function SocialMediaPage({
     } else if (!!edit) {
       let newFile = "";
       if (!!file) {
-        const uploaded = await uploadToBlob(file);
-        await deleteFromBlob(edit.icon);
+        const uploaded = await uploadToVps(file);
+        await deleteFromVps(edit.icon);
         newFile = uploaded.pathname;
       }
       const payload = {
@@ -173,7 +173,7 @@ export default function SocialMediaPage({
                 setEdit(item);
               }}
             >
-              <img src={BLOB_URL + item.icon} />
+              <img src={item.icon} />
             </div>
             <div className={styles.delete}>
               <IconButton

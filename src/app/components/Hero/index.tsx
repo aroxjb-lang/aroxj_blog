@@ -1,6 +1,6 @@
 "use client";
 
-import { BLOB_URL, Locales, PostInterface } from "@/app/lib/schemas";
+import {  Locales, PostInterface } from "@/app/lib/schemas";
 import React from "react";
 import styles from "./styles.module.css";
 import Slider from "react-slick";
@@ -50,7 +50,7 @@ export default function Hero({
               </div>
               <div className={styles.image}>
                 <Image
-                  src={BLOB_URL + item.featured_media_paths[0]}
+                  src={item.featured_media_paths[0]}
                   width={500}
                   height={300}
                   alt="banner"
