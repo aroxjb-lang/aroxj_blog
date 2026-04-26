@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./styles.module.css";
 import Image from "next/image";
 
-import { BLOB_URL, Locales, PostInterface } from "@/app/lib/schemas";
+import {  Locales, PostInterface } from "@/app/lib/schemas";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
@@ -21,7 +21,7 @@ export default function Card({
       <div className={styles.wrapper}>
         <div className={styles.imageWrapper}>
           <Image
-            src={BLOB_URL + (Array.isArray(post.featured_media_paths)?post.featured_media_paths[0]:post.featured_media_paths)}
+            src={ (Array.isArray(post.featured_media_paths)?post.featured_media_paths[0]:post.featured_media_paths)}
             width={300}
             height={200}
             alt="banner"

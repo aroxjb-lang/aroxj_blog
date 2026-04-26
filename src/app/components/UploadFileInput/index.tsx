@@ -11,7 +11,7 @@ import styles from "./styles.module.css";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import CloseIcon from "@mui/icons-material/Close";
 import { IconButton } from "@mui/material";
-import { BLOB_URL } from "@/app/lib/schemas";
+
 
 type Props = {
   accept?: string;
@@ -156,7 +156,7 @@ export default function UploadFileInput({
             </div>
 
             <img
-              src={BLOB_URL + f}
+              src={ f}
               alt={f}
               style={{ maxWidth: 240, borderRadius: 10 }}
             />

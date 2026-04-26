@@ -4,65 +4,64 @@ import { Routes } from "@/app/lib/routes";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { getSocials } from "@/app/lib/actions/socialMedias";
-import { BLOB_URL } from "@/app/lib/schemas";
+
 const routes: (
   | { title: string; subpages: { title: string; slug: Routes }[] }
   | {
-      title: string;
-      slug: Routes;
-    }
+    title: string;
+    slug: Routes;
+  }
 )[] = [
-  {
-    title: "",
-    subpages: [
-      {
-        title: "blog",
-        slug: Routes.BLOG,
-      },
-      {
-        title: "Archive",
-        slug: Routes.ARCHIVE,
-      },
-      {
-        title: "About us",
-        slug: Routes.ABOUT_US,
-      },
-    ],
-  },
-  {
-    title: "healthy lifestyle",
-    subpages: [
-      { title: "beauty", slug: Routes.BEAUTY },
-      { title: "body care", slug: Routes.BODY_CARE },
-      { title: "healthy food", slug: Routes.HEALTHY_FOOD },
-    ],
-  },
-  {
-    title: "diseases",
-    subpages: [
-      { title: "diseases", slug: Routes.DISEASES },
-      { title: "psychology", slug: Routes.PSYCHOLOGY },
-      { title: "interviews", slug: Routes.INTERVIEWS },
-      { title: "child care", slug: Routes.CHILD_CARE },
-      { title: "medicine of the future", slug: Routes.MEDICINE_OF_THE_FUTURE },
-    ],
-  },
-  {
-    title: "med info",
-    subpages: [{ title: "program", slug: Routes.PROGRAM }],
-  },
-  {
-    title: "entertainment",
-    subpages: [
-      { title: "announcements", slug: Routes.ANNOUNCEMENTS },
-      { title: "culture", slug: Routes.CULTURE },
-      { title: "sport", slug: Routes.SPORT },
-      { title: "travel news", slug: Routes.TRAVEL_NEWS },
-      { title: "recipe", slug: Routes.RECIPE },
-    ],
-  },
-];
+    {
+      title: "",
+      subpages: [
+        {
+          title: "blog",
+          slug: Routes.BLOG,
+        },
+        {
+          title: "Archive",
+          slug: Routes.ARCHIVE,
+        },
+        {
+          title: "About us",
+          slug: Routes.ABOUT_US,
+        },
+      ],
+    },
+    {
+      title: "healthy lifestyle",
+      subpages: [
+        { title: "beauty", slug: Routes.BEAUTY },
+        { title: "body care", slug: Routes.BODY_CARE },
+        { title: "healthy food", slug: Routes.HEALTHY_FOOD },
+      ],
+    },
+    {
+      title: "diseases",
+      subpages: [
+        { title: "diseases", slug: Routes.DISEASES },
+        { title: "psychology", slug: Routes.PSYCHOLOGY },
+        { title: "interviews", slug: Routes.INTERVIEWS },
+        { title: "child care", slug: Routes.CHILD_CARE },
+        { title: "medicine of the future", slug: Routes.MEDICINE_OF_THE_FUTURE },
+      ],
+    },
+    {
+      title: "med info",
+      subpages: [{ title: "program", slug: Routes.PROGRAM }],
+    },
+    {
+      title: "entertainment",
+      subpages: [
+        { title: "announcements", slug: Routes.ANNOUNCEMENTS },
+        { title: "culture", slug: Routes.CULTURE },
+        { title: "sport", slug: Routes.SPORT },
+        { title: "travel news", slug: Routes.TRAVEL_NEWS },
+        { title: "recipe", slug: Routes.RECIPE },
+      ],
+    },
+  ];
 export default function Footer({
   socialMedias,
 }: {
@@ -120,7 +119,7 @@ export default function Footer({
                   target="_blank"
                   className={styles.icon}
                 >
-                  <img src={BLOB_URL + item.icon} alt={item.url} />
+                  <img src={item.icon} alt={item.url} />
                 </Link>
               ))}
             </div>

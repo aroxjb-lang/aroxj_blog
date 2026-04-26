@@ -27,6 +27,9 @@ export async function signup() {
     return {
       message: "An error occurred while creating your account.",
     };
+  }else{
+    console.log('created');
+    
   }
 }
 
@@ -39,11 +42,26 @@ export async function login(data: AuthLoginInput) {
   try {
     await dbConnect();
     const user = await User.findOne({ email: data.email });
-    const isValidPass = await bcrypt.compare(data.password, user._doc.password);
-    if (isValidPass) {
-      await createSession(user._doc._id);
+     if (!user) {
+      throw new Error("User not found");
     }
+console.log("USER:", user);
+
+    const isValidPass = await bcrypt.compare(
+      data.password,
+      user.password
+    );
+
+    if (!isValidPass) {
+      throw new Error("Invalid password");
+    }
+console.log("PASSWORD OK:", isValidPass);
+    await createSession(user._id);
+console.log("SESSION START");
+
+    return { success: true };
   } catch (err) {
-    console.log(err);
+    console.log("LOGIN ERROR:", err);
+    return { success: false };
   }
 }

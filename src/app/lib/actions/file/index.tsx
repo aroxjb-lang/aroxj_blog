@@ -1,42 +1,39 @@
+
 "use server";
 
-import { del, put } from "@vercel/blob";
+import { writeFile, unlink } from "fs/promises";
+import path from "path";
 
-export async function uploadToBlob(file: File) {
+const UPLOAD_DIR = "/var/www/uploads";
 
+export async function uploadToVps(file: File) {
   if (!(file instanceof File)) {
     throw new Error("No file provided");
   }
 
-  // optional: validate
   if (file.size === 0) throw new Error("Empty file");
-  // Server uploads recommended for small files on Vercel (≈4.5MB)
-  // If you need bigger => use client upload flow.
 
   const safeName = file.name.replace(/[^\w.\-() ]+/g, "_");
-  const path = `uploads/${Date.now()}-${safeName}`;
+  const fileName = `${Date.now()}-${safeName}`;
 
-  const blob = await put(path, file, {
-    access: "public",
-    // contentType: file.type, // optional
-    addRandomSuffix: false, // optional (keeps it unique)
-  });
+  const bytes = await file.arrayBuffer();
+  const buffer = Buffer.from(bytes);
 
-  // blob.url / blob.downloadUrl are available
-  return { url: blob.url, downloadUrl: blob.downloadUrl, pathname: blob.pathname };
+  const filePath = path.join(UPLOAD_DIR, fileName);
+
+  await writeFile(filePath, buffer);
+
+  return {
+    pathname: `/uploads/${fileName}`,
+    fileName
+  };
 }
 
 
 
 
-
-
-export async function deleteFromBlob(url: string) {
-  if (!url) {
-    throw new Error("Missing blob url");
-  }
-
-  await del(url);
-
+export async function deleteFromVps(fileName: string) {
+  const filePath = `/var/www/uploads/${fileName}`;
+  await unlink(filePath);
   return { success: true };
 }

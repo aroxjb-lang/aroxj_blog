@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Slider, { Settings } from "react-slick";
 import styles from "./styles.module.css";
 import Image from "next/image";
-import { BLOB_URL, Locales, PostInterface } from "@/app/lib/schemas";
+import {  Locales, PostInterface } from "@/app/lib/schemas";
 import { useTranslations } from "next-intl";
 import { IconButton } from "@mui/material";
 import ArrowBackRounded from "@mui/icons-material/ArrowBackRounded";
@@ -104,7 +104,7 @@ export default function BlogSlider({
             <div className={styles.wrapper}>
               <div className={styles.imageWrapper}>
                 <Image
-                  src={BLOB_URL + item.featured_media_paths[0]}
+                  src={item.featured_media_paths[0]}
                   width={300}
                   height={200}
                   alt="banner"

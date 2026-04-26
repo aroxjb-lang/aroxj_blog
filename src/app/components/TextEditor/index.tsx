@@ -29,7 +29,7 @@ import Gapcursor from "@tiptap/extension-gapcursor";
 import Image from "@tiptap/extension-image";
 import { Extension, mergeAttributes } from "@tiptap/core";
 import { NodeSelection } from "prosemirror-state";
-import { uploadToBlob } from "@/app/lib/actions/file";
+import { uploadToVps } from "@/app/lib/actions/file";
 
 /**
  * ✅ Word-like features included:
@@ -369,7 +369,7 @@ export default function WordStyleEditor({ value = "", onChange }: Props) {
       editor.chain().focus().setImage({ src: localUrl, width: 100 }).run();
 
       try {
-        const { url } = await uploadToBlob(file);
+        const { pathname } = await uploadToVps(file);
         // update by searching node with the id
         const { state, view } = editor;
         let tr = state.tr;
@@ -378,7 +378,7 @@ export default function WordStyleEditor({ value = "", onChange }: Props) {
         state.doc.descendants((node, pos) => {
           if (node.type.name === "image" && node.attrs?.id === id) {
             found = true;
-            tr = tr.setNodeMarkup(pos, undefined, { ...node.attrs, src: url });
+            tr = tr.setNodeMarkup(pos, undefined, { ...node.attrs, src: pathname });
             return false;
           }
           return true;

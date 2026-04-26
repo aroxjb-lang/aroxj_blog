@@ -3,7 +3,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [new URL("https://aroxjblog.am/wp-content/uploads/**"), new URL("https://nnqeytgn7ealljhf.public.blob.vercel-storage.com/**")],
+    remotePatterns: [new URL("https://aroxjblog.am/wp-content/uploads/**"), new URL("https://nnqeytgn7ealljhf.public.blob.vercel-storage.com/**"),new URL('http://70.34.199.105/en/uploads')],
   },
   experimental: {
     serverComponentsExternalPackages: ["mongoose"], 

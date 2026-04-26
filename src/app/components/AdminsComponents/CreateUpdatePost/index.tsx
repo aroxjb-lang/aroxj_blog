@@ -21,7 +21,7 @@ import AddIcon from "@mui/icons-material/Add";
 import SaveIcon from "@mui/icons-material/Save";
 import { YouTubeEmbed } from "@next/third-parties/google";
 import CategoriesSelect from "../../CategoriesSelect";
-import { deleteFromBlob, uploadToBlob } from "@/app/lib/actions/file";
+import { uploadToVps,deleteFromVps} from "@/app/lib/actions/file";
 import { useRouter } from "@/i18n/navigation";
 import { toast } from "react-toastify";
 import TextEditor from "../../TextEditor";
@@ -72,7 +72,7 @@ export default function CreateUpdatePost({
       if (!values.title.am || !values.slug) return;
       let newFiles: string[] = [];
       if (files.length > 0) {
-        const uploaded = await Promise.all(files.map((f) => uploadToBlob(f)));
+        const uploaded = await Promise.all(files.map((f) => uploadToVps(f)));
         newFiles = [...newFiles, ...uploaded.map((u) => u.pathname)];
       }
 
@@ -99,14 +99,14 @@ export default function CreateUpdatePost({
     } else {
       let newFiles = [...values.featured_media_paths];
       if (files.length > 0) {
-        const uploaded = await Promise.all(files.map((f) => uploadToBlob(f)));
+        const uploaded = await Promise.all(files.map((f) => uploadToVps(f)));
         newFiles = [...newFiles, ...uploaded.map((u) => u.pathname)];
       }
       const deletedFiles = data.featured_media_paths.filter(
         (path) => !newFiles.includes(path),
       );
       if (deletedFiles.length > 0) {
-        await Promise.all(deletedFiles.map((url) => deleteFromBlob(url)));
+        await Promise.all(deletedFiles.map((url) => deleteFromVps(url)));
       }
 
       const payload = {

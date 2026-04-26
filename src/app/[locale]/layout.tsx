@@ -42,17 +42,18 @@ export default async function RootLayout({
     notFound();
   }
   setRequestLocale(locale);
+  // await signup()
   return (
     <html lang={locale}>
       <Head>
         <script>window.yaContextCb = window.yaContextCb || []</script>
-<script src="https://yandex.ru/ads/system/context.js" async></script>
-<script>
-    const nnlJS = document.createElement('script'); 
-    nnlJS.src = "https://ads.caramel.am/nnl.js?ts="+new Date().getTime();
-    nnlJS.async = true;
-    document.head.appendChild(nnlJS);
-</script>
+        <script src="https://yandex.ru/ads/system/context.js" async></script>
+        <script>
+          const nnlJS = document.createElement('script');
+          nnlJS.src = "https://ads.caramel.am/nnl.js?ts="+new Date().getTime();
+          nnlJS.async = true;
+          document.head.appendChild(nnlJS);
+        </script>
 
 
       </Head>
