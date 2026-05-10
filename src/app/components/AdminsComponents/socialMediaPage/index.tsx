@@ -173,7 +173,7 @@ export default function SocialMediaPage({
                 setEdit(item);
               }}
             >
-              <img src={item.icon} />
+              <img src={'/'+item.icon} />
             </div>
             <div className={styles.delete}>
               <IconButton

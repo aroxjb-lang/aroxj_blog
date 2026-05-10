@@ -19,6 +19,7 @@ import SearchRounded from "@mui/icons-material/SearchRounded";
 import KeyboardArrowDownRounded from "@mui/icons-material/KeyboardArrowDownRounded";
 import MenuOpenRounded from "@mui/icons-material/MenuOpenRounded";
 import MobileMenu from "../MobileMenu";
+import Clock from '@/app/components/Clock';
 
 const routes: (
   | { title: string; subpages: { title: string; slug: Routes }[] }
@@ -174,7 +175,10 @@ export default function Header() {
 
           <LanguageSwitcher />
         </div>
-        <div className={clx(styles.mobile)}>
+
+        <div className={clx(styles.mobile)} >
+          <Clock/>
+
           <IconButton onClick={() => setMenuOpen(true)}>
             <MenuOpenRounded fontSize="large" />
           </IconButton>

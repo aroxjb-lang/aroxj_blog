@@ -16,18 +16,18 @@ export default async function MostViewed({ locale }: { locale: Locales }) {
       <div className={styles.mostViewedList}>
         {data.map((post) => (
           <Link
-            href={post.slug}
+            href={post.slug.replaceAll(' ','-')}
             prefetch
             key={post.slug}
           >
             <div className={styles.itemWrapper}>
-              <Image
-                src={post.featured_media_paths[0]}
-                width={300}
-                height={200}
-                alt="banner"
-                className={styles.banner}
-              />
+                {post.featured_media_paths[0]&&<Image
+                    src={'/'+post.featured_media_paths[0] }
+                    width={300}
+                    height={200}
+                    alt="banner"
+                    className={styles.banner}
+                />}
               <div className={styles.postItem}>
                 <h5 className={styles.postTitle}>
                   {post.title[locale] || post.title["am"]}

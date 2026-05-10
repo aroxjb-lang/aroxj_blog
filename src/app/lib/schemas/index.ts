@@ -14,7 +14,7 @@ export interface PostInterface {
   createdAt: string;
   updatedAt: string;
   slug: string;
-
+  publishing_date:Date;
   hashtags: string[];
   category: string;
   views: number;

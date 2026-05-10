@@ -22,8 +22,9 @@ export default async function page({
             video_url: "",
             views: 0,
             featured_media_paths: [],
+              publishing_date:new Date()
           }
-        : await getPostByID(decodeURIComponent(slug));
+        : await getPostByID(decodeURIComponent(slug.replaceAll('-',' ')));
 
     if (!data) return redirect({ href: "/admin", locale });
     return (
@@ -41,6 +42,7 @@ export default async function page({
             video_url: data.video_url,
             views: data.views,
             featured_media_paths: data.featured_media_paths,
+              publishing_date: data.publishing_date,
           }}
         />
       
