@@ -8,19 +8,53 @@ import MostViewed from "@/app/components/MostViewed";
 import LoadingCircule from "@/app/components/LoadingCircule";
 import Card from "@/app/components/Card";
 import { YouTubeEmbed } from "@next/third-parties/google";
+import {log} from 'node:util';
+import {Metadata} from 'next';
+import ShareButtons from '@/app/components/shareButtons';
+export async function generateMetadata({
+                                         params,
+                                       }: {
+  params: Promise<{ post_id: string; locale: Locales }>;
+}):Promise<Metadata> {
+  const {post_id,locale} = await params;
+  const post = await getPostByID(decodeURIComponent(post_id.replaceAll('-',' ')));
 
+  return {
+    title: post.title[locale]?post.title[locale]:post.title.am,
+
+    description: post.content[locale]?post.content[locale]:post.content.am,
+
+    openGraph: {
+      title: post.title[locale]?post.title[locale]:post.title.am,
+      description: post.content[locale]?post.content[locale]:post.content.am,
+      images: [post.featured_media_paths?.[0]],
+      url: `https://aroxjblog.am/${locale}/${post.slug.replaceAll(' ','-')}`,
+      type: 'article',
+    },
+
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title[locale]?post.title[locale]:post.title.am,
+      description: post.content[locale]?post.content[locale]:post.content.am,
+      images: [post.featured_media_paths?.[0]],
+    },
+  };
+}
 export default async function PostByID({
   params,
 }: {
   params: Promise<{ post_id: string; locale: Locales }>;
 }) {
   const { post_id, locale } = await params;
+  const id = decodeURIComponent(post_id);
   const t = await getTranslations();
-  try {
-    const data = await getPostByID(decodeURIComponent(post_id));
-    const { data: closeData } = await getTopPost({ limit: 4, page: 1 });
 
-    if (!data) return redirect({ href: "/", locale });
+
+  try {
+    const data = await getPostByID(decodeURIComponent(post_id.replaceAll('-',' ')));
+
+    const { data: closeData } = await getTopPost({ limit: 4, page: 1 });
+    // if (!data) return redirect({ href: "/", locale });
 
     return (
       <div>
@@ -48,6 +82,7 @@ export default async function PostByID({
                 <p className={styles.content} dangerouslySetInnerHTML={{__html:data.content[locale] || data.content.am}}>
                   {/* {data.content[locale] || data.content.am} */}
                 </p>
+
                 {data.video_url &&
                   data.video_url !== "" &&
                   data.video_url[0] !== "" && (
@@ -55,7 +90,10 @@ export default async function PostByID({
                       <YouTubeEmbed videoid={data.video_url} />
                     </div>
                   )}{" "}
+                <ShareButtons title={data.title[locale]?data.title[locale]:data.title.am} url={`https://aroxjblog.am/${locale}/${encodeURI(data.slug.replaceAll(' ','-'))}`} />
+
               </div>
+
             </div>
             <div className={styles.mostViewWrapper}>
               <Suspense fallback={<LoadingCircule size={"2rem"} />}>
@@ -78,6 +116,7 @@ export default async function PostByID({
       </div>
     );
   } catch (e) {
+    console.error(e);
     return redirect({ href: "/", locale });
   }
 }

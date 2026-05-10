@@ -119,7 +119,7 @@ export default function Footer({
                   target="_blank"
                   className={styles.icon}
                 >
-                  <img src={item.icon} alt={item.url} />
+                  <img src={'/'+item.icon} alt={item.url} />
                 </Link>
               ))}
             </div>
