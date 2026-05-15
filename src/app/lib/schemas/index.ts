@@ -10,7 +10,6 @@ export interface PostInterface {
   featured_media_path?: string;
   video_url: string;
   featured_media_paths: string[];
-  suggested_blob_paths: string[];
   createdAt: string;
   updatedAt: string;
   slug: string;

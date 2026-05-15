@@ -36,7 +36,7 @@ export default function Hero({
                                    dangerouslySetInnerHTML={{__html: item.content[locale] || item.content.am}}>
                                     {/* {item.content[locale] || item.content.am}{" "} */}
                                 </p>
-                                <Link href={item.slug.replaceAll(' ','-')} className={styles.link} prefetch={true}>
+                                <Link href={item.slug} className={styles.link} prefetch={true}>
                                     {t('read more')}
                                 </Link>
                             </div>

@@ -16,7 +16,7 @@ export default async function MostViewed({ locale }: { locale: Locales }) {
       <div className={styles.mostViewedList}>
         {data.map((post) => (
           <Link
-            href={post.slug.replaceAll(' ','-')}
+            href={post.slug}
             prefetch
             key={post.slug}
           >
