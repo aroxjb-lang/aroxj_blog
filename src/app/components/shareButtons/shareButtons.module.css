@@ -1,6 +1,7 @@
 .buttonsContainer{
     display: flex;
     gap: 8px;
+    margin-top: 32px;
 }
 .button{
     background: none;
