@@ -45,7 +45,6 @@ export async function login(data: AuthLoginInput) {
      if (!user) {
       throw new Error("User not found");
     }
-console.log("USER:", user);
 
     const isValidPass = await bcrypt.compare(
       data.password,

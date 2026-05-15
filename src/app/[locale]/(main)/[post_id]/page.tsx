@@ -36,7 +36,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: post.title[locale]?post.title[locale]:post.title.am,
       description: post.content[locale]?post.content[locale]:post.content.am,
-      images: ['/'+post.featured_media_paths?.[0]],
+      images: ['https://aroxjblog.am/'+post.featured_media_paths?.[0]],
     },
   };
 }
@@ -67,7 +67,7 @@ export default async function PostByID({
               </h3>
               <div className={styles.post}>
                 <img
-                  src={'/'+
+                  src={'/wp-content/'+
                   
                     ("featured_media_path" in data
                       ? data.featured_media_path
