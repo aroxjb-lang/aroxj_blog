@@ -81,7 +81,7 @@ export default function CreateUpdatePost({
                     toast.success('Saved', {
                         position: 'top-right', autoClose: 1000,
                     });
-                    router.push(`/admin/${res.slug.replaceAll(' ', '-')}`);
+                    router.push(`/admin/${res.slug}`);
                 })
                 .catch((err) => {
                     toast.error('Error updating post', {
@@ -106,12 +106,12 @@ export default function CreateUpdatePost({
                     am, en, ru,
                 }, slug: values.slug.trim(), video_url: values.video_url, featured_media_paths: newFiles,
             };
-            updatePostByID(decodeURIComponent(slug.replaceAll('-', ' ')), payload)
+            updatePostByID(decodeURIComponent(slug), payload)
                 .then((res) => {
                     toast.success('Saved', {
                         position: 'top-right', autoClose: 1000,
                     });
-                    router.push(`/admin/${res.slug.replaceAll(' ', '-')}`);
+                    router.push(`/admin/${res.slug}`);
                 })
                 .catch((err) => {
                     toast.error('Error updating post', {

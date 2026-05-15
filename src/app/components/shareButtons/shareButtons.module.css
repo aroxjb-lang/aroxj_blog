@@ -1,0 +1,8 @@
+.buttonsContainer{
+    display: flex;
+    gap: 8px;
+}
+.button{
+    background: none;
+    border: none;
+}

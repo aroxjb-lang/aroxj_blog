@@ -17,7 +17,7 @@ export async function generateMetadata({
   params: Promise<{ post_id: string; locale: Locales }>;
 }):Promise<Metadata> {
   const {post_id,locale} = await params;
-  const post = await getPostByID(decodeURIComponent(post_id.replaceAll('-',' ')));
+  const post = await getPostByID(decodeURIComponent(post_id));
 
   return {
     title: post.title[locale]?post.title[locale]:post.title.am,
@@ -28,7 +28,7 @@ export async function generateMetadata({
       title: post.title[locale]?post.title[locale]:post.title.am,
       description: post.content[locale]?post.content[locale]:post.content.am,
       images: [post.featured_media_paths?.[0]],
-      url: `https://aroxjblog.am/${locale}/${post.slug.replaceAll(' ','-')}`,
+      url: `https://aroxjblog.am/${locale}/${post.slug}`,
       type: 'article',
     },
 
@@ -51,7 +51,7 @@ export default async function PostByID({
 
 
   try {
-    const data = await getPostByID(decodeURIComponent(post_id.replaceAll('-',' ')));
+    const data = await getPostByID(decodeURIComponent(post_id));
 
     const { data: closeData } = await getTopPost({ limit: 4, page: 1 });
     // if (!data) return redirect({ href: "/", locale });
@@ -90,7 +90,7 @@ export default async function PostByID({
                       <YouTubeEmbed videoid={data.video_url} />
                     </div>
                   )}{" "}
-                <ShareButtons title={data.title[locale]?data.title[locale]:data.title.am} url={`https://aroxjblog.am/${locale}/${encodeURI(data.slug.replaceAll(' ','-'))}`} />
+                <ShareButtons title={data.title[locale]?data.title[locale]:data.title.am} url={`https://aroxjblog.am/${locale}/${encodeURI(data.slug)}`} />
 
               </div>
 

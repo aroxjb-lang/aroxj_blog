@@ -24,7 +24,7 @@ export default async function page({
             featured_media_paths: [],
               publishing_date:new Date()
           }
-        : await getPostByID(decodeURIComponent(slug.replaceAll('-',' ')));
+        : await getPostByID(decodeURIComponent(slug));
 
     if (!data) return redirect({ href: "/admin", locale });
     return (

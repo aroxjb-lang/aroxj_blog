@@ -100,7 +100,7 @@ export default function BlogSlider({
     <div className={styles.sliderWrapper}>
       <Slider ref={slider} {...settings}>
         {data.map((item) => (
-          <div className={styles.slide} key={item._id} onClick={()=>router.push('/'+item.slug.replaceAll(' ','-'))}>
+          <div className={styles.slide} key={item._id} onClick={()=>router.push('/'+item.slug)}>
             <div className={styles.wrapper}>
               {item.featured_media_paths[0]&&<div className={styles.imageWrapper}>
                 <Image
