@@ -22,7 +22,7 @@ export default function Card({
         <div className={styles.wrapper}>
             <div className={styles.imageWrapper}>
                 { !!(Array.isArray(post.featured_media_paths) ? post.featured_media_paths[0] : post.featured_media_paths)&&<Image
-                    src={'/'+ (Array.isArray(post.featured_media_paths) ? post.featured_media_paths[0] : post.featured_media_paths)}
+                    src={'/wp-content/'+ (Array.isArray(post.featured_media_paths) ? post.featured_media_paths[0] : post.featured_media_paths)}
                     width={300}
                     height={200}
                     alt="banner"

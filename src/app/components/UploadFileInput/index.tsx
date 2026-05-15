@@ -126,7 +126,7 @@ export default function UploadFileInput({
 					</div>
 
 					<img
-						src={'/' + f}
+						src={'/wp-content/' + f}
 						alt={f}
 						style={{maxWidth: 240, borderRadius: 10}}
 					/>

@@ -104,7 +104,7 @@ export default function BlogSlider({
             <div className={styles.wrapper}>
               {item.featured_media_paths[0]&&<div className={styles.imageWrapper}>
                 <Image
-                    src={'/'+item.featured_media_paths[0]}
+                    src={'/wp-content/'+item.featured_media_paths[0]}
                     width={300}
                     height={200}
                     alt="banner"

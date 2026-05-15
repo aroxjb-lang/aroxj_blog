@@ -33,7 +33,7 @@ export async function uploadToVps(file: File) {
   await fs.writeFile(filePath, buffer);
 
   return {
-    pathname: `wp-content/uploads/${fileName}`,
+    pathname: `uploads/${fileName}`,
     fileName,
   };
 }

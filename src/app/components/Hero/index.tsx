@@ -42,7 +42,7 @@ export default function Hero({
                             </div>
                         {item.featured_media_paths[0]&&<div className={styles.image}>
                             <Image
-                                src={'/'+item.featured_media_paths[0] }
+                                src={'/wp-content/'+item.featured_media_paths[0] }
                                 width={500}
                                 height={300}
                                 alt="banner"

@@ -173,7 +173,7 @@ export default function SocialMediaPage({
                 setEdit(item);
               }}
             >
-              <img src={'/'+item.icon} />
+              <img src={'/wp-content/'+item.icon} />
             </div>
             <div className={styles.delete}>
               <IconButton

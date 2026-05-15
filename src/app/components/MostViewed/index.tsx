@@ -22,7 +22,7 @@ export default async function MostViewed({ locale }: { locale: Locales }) {
           >
             <div className={styles.itemWrapper}>
                 {post.featured_media_paths[0]&&<Image
-                    src={'/'+post.featured_media_paths[0] }
+                    src={'/wp-content/'+post.featured_media_paths[0] }
                     width={300}
                     height={200}
                     alt="banner"
