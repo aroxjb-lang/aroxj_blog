@@ -27,7 +27,7 @@ export async function generateMetadata({
     openGraph: {
       title: post.title[locale]?post.title[locale]:post.title.am,
       description: post.content[locale]?post.content[locale]:post.content.am,
-      images: ['/'+post.featured_media_paths?.[0]],
+      images: ['https://aroxjblog.am/'+post.featured_media_paths?.[0]],
       url: `https://aroxjblog.am/${locale}/${post.slug}`,
       type: 'article',
     },
