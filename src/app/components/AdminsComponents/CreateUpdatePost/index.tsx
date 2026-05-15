@@ -95,8 +95,7 @@ export default function CreateUpdatePost({
                 newFiles = [...newFiles, ...uploaded.map((u) => u.pathname)];
             }
             const deletedFiles = data.featured_media_paths.filter((path) => !newFiles.includes(path));
-            console.log(newFiles);
-            console.log(deletedFiles);
+
             if (deletedFiles.length > 0) {
                 await Promise.all(deletedFiles.map((url) => deleteFromVps(url.replace('/uploads/',''))));
             }
