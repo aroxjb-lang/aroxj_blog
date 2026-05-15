@@ -6,7 +6,7 @@ import { randomUUID } from "crypto";
 
 const UPLOAD_DIR =
     process.env.NODE_ENV === "production"
-        ? "/var/www/uploads"
+        ? "/var/www/wp-content/uploads"
         : path.join(process.cwd(), "uploads");
 
 export async function uploadToVps(file: File) {
@@ -33,7 +33,7 @@ export async function uploadToVps(file: File) {
   await fs.writeFile(filePath, buffer);
 
   return {
-    pathname: `uploads/${fileName}`,
+    pathname: `wp-content/uploads/${fileName}`,
     fileName,
   };
 }
