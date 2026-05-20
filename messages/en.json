@@ -1,6 +1,6 @@
 {
     "news": "news",
-    "healthy blog": "healthy <br></br>blog",
+    "healthy blog": "healthy blog",
     "read more": "read more",
     "blog": "blog",
     "most viewed": "most viewed",
@@ -61,5 +61,6 @@
     "Hashtags":"Hashtags","ADD":"ADD",
     "Socials Medias":"Socials Medias",
     "About us":"About us",
-    "Ads":"Ads"
+    "Ads":"Ads",
+  "Publish date": "Publish date"
 }

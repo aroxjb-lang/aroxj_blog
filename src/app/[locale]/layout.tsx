@@ -13,8 +13,7 @@ import MUIThemeProvider from "../lib/context/themeContext";
 import Loading from "../components/LoadingCircule";
 import dbConnect from "../lib/mongoose";
 import { signup } from "../lib/actions/auth";
-import Head from "next/head";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import Scripts from "../components/Scripts";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -65,30 +64,11 @@ export default async function RootLayout({
   }
   setRequestLocale(locale);
   // await signup()
+
   return (
     <html lang={locale}>
-      <Head>
-		  <GoogleAnalytics gaId={'G-N6K5BYL4RQ'}/>
-        <script>window.yaContextCb = window.yaContextCb || []</script>
-        <script src="https://yandex.ru/ads/system/context.js" async></script>
-		  {/*<script async src="https://www.googletagmanager.com/gtag/js?id=G-N6K5BYL4RQ"></script>
-		  <script>
-			  window.dataLayer = window.dataLayer || [];
-			  function gtag(){dataLayer.push(arguments);}
-			  gtag('js', new Date());
-
-			  gtag('config', 'G-N6K5BYL4RQ');
-		  </script>*/}
-        <script>
-          const nnlJS = document.createElement('script');
-          nnlJS.src = "https://ads.caramel.am/nnl.js?ts="+new Date().getTime();
-          nnlJS.async = true;
-          document.head.appendChild(nnlJS);
-        </script>
-
-
-      </Head>
       <body className={` ${bebas.className} ${geistSans.variable} `}>
+        <Scripts />
         <NextIntlClientProvider>
           <MUIThemeProvider>
             <Suspense fallback={<Loading />}>{children}</Suspense>
