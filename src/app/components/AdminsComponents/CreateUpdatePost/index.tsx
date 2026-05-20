@@ -364,7 +364,7 @@ export default function CreateUpdatePost({
                 </label>
             </div>
             <label className={styles.inputContainer}>
-                <p className={styles.label}>{t('Hashtags')}:</p>
+                <p className={styles.label}>{t('Publish date')}:</p>
                 <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'ru'}>
                     <DateTimePicker
                         value={dayjs(values.publishing_date)}
