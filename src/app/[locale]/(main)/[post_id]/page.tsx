@@ -27,7 +27,7 @@ export async function generateMetadata({
     openGraph: {
       title: post.title[locale]?post.title[locale]:post.title.am,
       description: post.content[locale]?post.content[locale]:post.content.am,
-      images: ['https://aroxjblog.am/'+post.featured_media_paths?.[0]],
+      images: ['https://aroxjblog.am/wp-content/'+post.featured_media_paths?.[0]],
       url: `https://aroxjblog.am/${locale}/${post.slug}`,
       type: 'article',
     },
@@ -36,7 +36,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: post.title[locale]?post.title[locale]:post.title.am,
       description: post.content[locale]?post.content[locale]:post.content.am,
-      images: ['https://aroxjblog.am/'+post.featured_media_paths?.[0]],
+      images: ['https://aroxjblog.am/wp-content'+post.featured_media_paths?.[0]],
     },
   };
 }
