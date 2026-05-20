@@ -66,7 +66,7 @@ export default function SocialMediaPage({
       let newFile = "";
       if (!!file) {
         const uploaded = await uploadToVps(file);
-        await deleteFromVps(edit.icon.replace('/uploads/',''));
+        await deleteFromVps(edit.icon.replace('uploads/',''));
         newFile = uploaded.pathname;
       }
       const payload = {
