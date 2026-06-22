@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import { Locales, PostInterface } from "../../lib/schemas";
 import styles from "../../[locale]/(main)/page.module.css";
-import { useTranslations } from "next-intl";
 
 import Card from "../Card";
 import MostViewed from "../MostViewed";
@@ -15,7 +14,6 @@ interface Props {
 }
 
 export default function PageComponent({ data, locale, pagesCount }: Props) {
-  const t = useTranslations();
   const newData = [...data];
   const heroData = newData.splice(0, 7);
 

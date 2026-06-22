@@ -10,6 +10,8 @@ import { IconButton } from "@mui/material";
 import ArrowBackRounded from "@mui/icons-material/ArrowBackRounded";
 import ArrowForwardRounded from "@mui/icons-material/ArrowForwardRounded";
 import { useRouter } from "@/i18n/navigation";
+import cls from 'classnames';
+import {addZero} from '@/app/lib/utilits';
 
 export default function BlogSlider({
   data,
@@ -99,33 +101,40 @@ export default function BlogSlider({
   return (
     <div className={styles.sliderWrapper}>
       <Slider ref={slider} {...settings}>
-        {data.map((item) => (
-          <div className={styles.slide} key={item._id} onClick={()=>router.push('/'+item.slug)}>
-            <div className={styles.wrapper}>
-              {item.featured_media_paths[0]&&<div className={styles.imageWrapper}>
-                <Image
-                    src={'/wp-content/'+item.featured_media_paths[0]}
-                    width={300}
-                    height={200}
-                    alt="banner"
-                />
-              </div>}
-              <div className={styles.textContent}>
-                <h3 className={styles.postTitle}>
-                  {item.title[locale] || item.title["am"]}
-                </h3>
-                {/* <p className={styles.content}>
+        {data.map((item) => {
+			const date = new Date(item.updatedAt ? (item.publishing_date && new Date(item.publishing_date).getTime() > new Date(item.updatedAt).getTime() ? item.publishing_date : item.updatedAt) : (item.publishing_date ? item.publishing_date : item.date));
+
+			return(
+				<div className={styles.slide} key={item._id} onClick={() => router.push('/' + item.slug)}>
+					<div className={styles.wrapper}>
+						{item.featured_media_paths[0] && <div className={styles.imageWrapper}>
+							<Image
+								src={'/wp-content/' + item.featured_media_paths[0]}
+								width={300}
+								height={200}
+								alt="banner"
+							/>
+						</div>}
+						<div className={styles.textContent}>
+							<h3 className={styles.postTitle}>
+								{item.title[locale] || item.title['am']}
+							</h3>
+							{/* <p className={styles.content}>
             {post.content[locale]?.substring(0, 200) ||
               post.content["am"].substring(0, 200)}
             ...
           </p> */}
-                <p className={styles.views}>
-                  {item.views} {t("views")}
-                </p>
-              </div>
-            </div>
-          </div>
-        ))}
+							<p className={styles.views}>
+								{item.views} {t('views')}
+							</p>
+							<p className={cls(styles.views, {[styles.unpublished]: item.publishing_date && new Date(item.publishing_date).getTime() > new Date().getTime()})}>
+								{addZero(date.getDate())} {date.toLocaleString(locale === 'am' ? 'hy' : locale, {month: 'long'}).toUpperCase()}{' '}{date.getFullYear()}{' '}{addZero(date.getHours())}:{addZero(date.getMinutes())}
+							</p>
+						</div>
+					</div>
+				</div>
+			);
+		})}
       </Slider>
       <div>
         {" "}

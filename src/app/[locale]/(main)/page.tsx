@@ -17,13 +17,27 @@ export default async function Home({
   const t = await getTranslations();
   const { locale } = await params;
   const { data } = await getTopPost({ limit: 12, page: 1 });
-  const [medInfoData, beautyData, diseasesData, entertainmentData] =
+  const [medInfoData, beauty,bodyCare,healtyFood, diseases,psychology,interviews,childCare,medicineOfFuture,announcement, cuture,sport,travel,recipe] =
     await Promise.all([
       getTopPost({ limit: 10, category: Categories.PROGRAM }),
       getTopPost({ limit: 10, category: Categories.BEAUTY }),
+      getTopPost({ limit: 10, category: Categories.BODY_CARE }),
+      getTopPost({ limit: 10, category: Categories.HEALTY_FOOD }),
       getTopPost({ limit: 10, category: Categories.DISEASES }),
+      getTopPost({ limit: 10, category: Categories.PSYCHOLOGY }),
+      getTopPost({ limit: 10, category: Categories.INTERVIEWS }),
+      getTopPost({ limit: 10, category: Categories.CHILD_CARE }),
+      getTopPost({ limit: 10, category: Categories.MEDICINE_OF_THE_FUTURE }),
+      getTopPost({ limit: 10, category: Categories.ANNOUNCEMENT }),
       getTopPost({ limit: 10, category: Categories.CULTURE }),
+      getTopPost({ limit: 10, category: Categories.SPORT }),
+      getTopPost({ limit: 10, category: Categories.TRAVEL_NEWS }),
+      getTopPost({ limit: 10, category: Categories.RECIPE }),
+
     ]);
+  const beautyData=[...beauty.data,...bodyCare.data,...healtyFood.data].sort((a,b)=> new Date(b.date).getTime()-new Date(a.date).getTime()).slice(0,10)
+  const diseasesData=[...diseases.data,...psychology.data,...interviews.data,...childCare.data,...medicineOfFuture.data].sort((a,b)=> new Date(a.date).getTime()-new Date(b.date).getTime()).slice(0,10)
+  const entertainmentData=[...beauty.data,...bodyCare.data,...healtyFood.data].sort((a,b)=> new Date(a.date).getTime()-new Date(b.date).getTime()).slice(0,10)
 
   const heroData = data.splice(0, 5);
   return (
@@ -58,7 +72,7 @@ export default async function Home({
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}> {t("healthy lifestyle")}</h3>
          <BlogSlider
-            data={structuredClone(beautyData.data)}
+            data={structuredClone(beautyData)}
             locale={locale}
           />
         {/* <div className={styles.sectionCards}>
@@ -73,7 +87,7 @@ export default async function Home({
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}> {t("diseases")}</h3>
         <BlogSlider
-            data={structuredClone(diseasesData.data)}
+            data={structuredClone(diseasesData)}
             locale={locale}
           />
        
@@ -81,7 +95,7 @@ export default async function Home({
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}> {t("entertainment")}</h3>
         <BlogSlider
-            data={structuredClone(entertainmentData.data)}
+            data={structuredClone(entertainmentData)}
             locale={locale}
           />
         

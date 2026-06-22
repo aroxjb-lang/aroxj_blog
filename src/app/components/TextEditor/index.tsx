@@ -125,7 +125,7 @@ function ImageNodeView({ node, selected }: NodeViewProps) {
     selected ? "wordImgSelected" : "",
     `align-${align}`,
     `wrap-${wrap}`,
-    isFloat ? `float-${align}` : "",
+   `float-${'left'}` ,
   ]
     .filter(Boolean)
     .join(" ");
@@ -733,8 +733,10 @@ export default function WordStyleEditor({ value = "", onChange }: Props) {
         .range{width:160px}
 
         /* NodeView image styling */
-        .wordImg{display:block;border-radius:10px;margin:8px auto}
-        .wordImg img{width:100%;height:auto;display:block;border-radius:10px}
+        .wordImg{display:block;border-radius:10px;margin:8px auto;    width: fit-content !important;
+    max-width: 100% ;
+    float: left ;}
+        .wordImg img{width:fit-content;height:auto;display:block;border-radius:10px}
         .wordImgSelected{outline:2px solid rgba(25,118,210,.6);outline-offset:3px}
 
         /* default alignment when not floating */

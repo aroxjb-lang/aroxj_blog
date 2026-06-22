@@ -8,8 +8,6 @@ import Link from 'next/link';
 import cls from 'classnames';
 import {addZero} from '@/app/lib/utilits';
 
-
-
 export default function Card({
                                  locale, post,
                              }: {
@@ -17,7 +15,6 @@ export default function Card({
 }) {
     const t = useTranslations();
     const date = new Date(post.updatedAt ? (post.publishing_date && new Date(post.publishing_date).getTime() > new Date(post.updatedAt).getTime() ? post.publishing_date : post.updatedAt) : (post.publishing_date ? post.publishing_date : post.date));
-    console.log((Array.isArray(post.featured_media_paths) ? post.featured_media_paths[0] : post.featured_media_paths));
     return (<Link href={post.slug}>
         <div className={styles.wrapper}>
             <div className={styles.imageWrapper}>
