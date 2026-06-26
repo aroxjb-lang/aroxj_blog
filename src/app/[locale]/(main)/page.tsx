@@ -37,7 +37,7 @@ export default async function Home({
     ]);
   const beautyData=[...beauty.data,...bodyCare.data,...healtyFood.data].sort((a,b)=> new Date(b.date).getTime()-new Date(a.date).getTime()).slice(0,10)
   const diseasesData=[...diseases.data,...psychology.data,...interviews.data,...childCare.data,...medicineOfFuture.data].sort((a,b)=> new Date(a.date).getTime()-new Date(b.date).getTime()).slice(0,10)
-  const entertainmentData=[...beauty.data,...bodyCare.data,...healtyFood.data].sort((a,b)=> new Date(a.date).getTime()-new Date(b.date).getTime()).slice(0,10)
+  const entertainmentData=[...announcement.data, ...cuture.data,...sport.data,...travel.data,...recipe.data].sort((a,b)=> new Date(a.date).getTime()-new Date(b.date).getTime()).slice(0,10)
 
   const heroData = data.splice(0, 5);
   return (

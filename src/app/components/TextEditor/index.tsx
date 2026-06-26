@@ -322,7 +322,11 @@ export default function WordStyleEditor({ value = "", onChange }: Props) {
     immediatelyRender: false,
     extensions,
     content: value,
-    onUpdate: ({ editor }) => onChange?.(editor.getHTML()),
+    onUpdate: ({ editor }) => {
+      const html = editor.getHTML();
+      lastExternal.current = html;
+      onChange?.(html);
+    },
     editorProps: {
       attributes: { class: "ProseMirror wordProse" },
     },
@@ -712,7 +716,7 @@ export default function WordStyleEditor({ value = "", onChange }: Props) {
         onDragOver={(e) => e.preventDefault()}
         onPaste={onPaste}
       >
-        <EditorContent editor={editor} onClick={focusEditor} />
+        <EditorContent editor={editor} />
       </div>
 
       {/* Minimal styles inline (move these to css/module if you prefer) */}
