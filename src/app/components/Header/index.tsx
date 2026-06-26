@@ -150,7 +150,7 @@ export default function Header() {
           </ClickAwayListener>
         </div>
         <div className={clx(styles.searchWrapper, styles.desktop)}>
-          <ClickAwayListener onClickAway={() => setSearchOpen(false)}>
+			{/* <ClickAwayListener onClickAway={() => setSearchOpen(false)}>
             <div className={styles.search}>
               <SearchRounded
                 onClick={() => setSearchOpen(!searchOpen)}
@@ -169,7 +169,7 @@ export default function Header() {
                 />
               </Collapse>
             </div>
-          </ClickAwayListener>
+          </ClickAwayListener>*/}
 
           <LanguageSwitcher />
         </div>

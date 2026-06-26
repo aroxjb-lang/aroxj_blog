@@ -2,56 +2,73 @@
   width: 100%;
   position: sticky;
   top: 0;
-  z-index: 9;
-  transition: 0.2s ease-in-out;
-  background-color: var(--background);
-
-  box-shadow: 0px 0px 20px -10px #000;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(55, 167, 17, 0.1);
+  box-shadow: 0 1px 32px rgba(0, 0, 0, 0.06);
+  transition: box-shadow var(--transition);
 }
+
 .header {
   max-width: var(--container);
-  padding: calc(var(--padding) / 2) var(--padding);
+  padding: 0 var(--padding);
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 68px;
 }
 
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
+
 .title {
   max-width: 100px;
-  font-size: 24px;
-  line-height: 26px;
+  font-size: 22px;
+  line-height: 24px;
   font-weight: 900;
   font-family: var(--font-bebas-sans);
   color: var(--main);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
 }
 
 .nav {
   display: flex;
   align-items: center;
   width: 60%;
-  gap: 20px;
+  gap: 4px;
 }
 
 .link {
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 500;
   text-transform: capitalize;
   cursor: pointer;
   display: flex;
   align-items: center;
   white-space: nowrap;
-  padding: 10px 0;
-  gap: 5px;
-  &.active {
+  padding: 8px 12px;
+  gap: 4px;
+  border-radius: 999px;
+  color: var(--foreground);
+  transition: background var(--transition), color var(--transition);
+
+  &:hover {
+    background: var(--background-active);
     color: var(--main);
-    border-bottom: 2px solid var(--main);
+  }
+
+  &.active {
+    background: var(--background-active);
+    color: var(--main);
+    font-weight: 600;
   }
 }
 
@@ -61,74 +78,84 @@
 
 .collapse {
   position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  min-width: fit-content;
-  background-color: var(--background);
-  border-radius: 10px;
-  margin-top: 10px;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+  min-width: 160px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius);
   z-index: 10;
   white-space: nowrap;
-
-  box-shadow: 0px 0px 20px -10px #000;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  padding: 6px;
 }
+
 .sublink {
   display: block;
-  padding: 10px 20px;
-  font-size: 14px;
+  padding: 9px 14px;
+  font-size: 13px;
   font-weight: 400;
   text-transform: capitalize;
   cursor: pointer;
   white-space: nowrap;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition), color var(--transition);
 
-  /* border-bottom: 1px solid var(--main); */
-
-  &:last-child {
-    border-radius: 0 0 10px 10px;
-  }
-  &:first-child {
-    border-radius: 10px 10px 0 0;
-  }
   &.active,
   &:hover {
-    background-color: var(--background-active);
+    background: var(--background-active);
+    color: var(--main);
   }
 }
 
 .chevron {
-  transition: 0.2s ease-in-out;
-  opacity: 0.7;
+  transition: transform var(--transition);
+  opacity: 0.5;
+
   &.rotate {
     transform: rotate(180deg);
+    opacity: 1;
   }
 }
 
 .searchWrapper {
   position: relative;
   height: 100%;
-  background-color: var(--background);
+  background: transparent;
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .search {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   position: absolute;
   width: fit-content;
   top: 0;
   right: 100%;
   z-index: 1;
-  padding: 0 10px 0 30px;
-  background: linear-gradient(90deg, transparent 0%, var(--background) 10%);
+  padding: 0 12px 0 32px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.9) 12%);
 }
+
 .searchIcon {
   cursor: pointer;
+  color: var(--secondary-text);
+  transition: color var(--transition);
+
+  &:hover {
+    color: var(--main);
+  }
 }
+
 .searchField {
   width: 200px;
 }
@@ -137,32 +164,30 @@
   .desktop {
     display: none;
   }
+
   .logo {
     display: flex;
     align-items: center;
     gap: 10px;
+
     img {
-      width: 50px;
-      height: 50px;
+      width: 44px;
+      height: 44px;
     }
   }
+
   .title {
-    max-width: 100px;
     font-size: 16px;
     line-height: 18px;
-    font-weight: 900;
-    font-family: var(--font-bebas-sans);
-    color: var(--main);
-    text-transform: uppercase;
-    letter-spacing: 1px;
   }
-  
 }
 
-.mobile{
+.mobile {
   display: flex;
   align-items: center;
+  gap: 4px;
 }
+
 @media (min-width: 1100px) {
   .mobile {
     display: none;

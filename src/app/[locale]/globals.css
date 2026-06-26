@@ -1,13 +1,23 @@
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-  --secondary-text: #17171771;
+  --foreground: #111111;
+  --secondary-text: #6b7280;
   --main: #37a711;
-  --red:#d62828;
-  --background-active: #37a71114;
+  --main-dark: #2a8209;
+  --main-light: #f0f9ed;
+  --red: #d62828;
+  --background-active: #f0f9ed;
   --font-bebas-sans: "bebas";
   --container: 1500px;
   --padding: 20px;
+  --radius: 16px;
+  --radius-sm: 8px;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow: 0 6px 28px rgba(0, 0, 0, 0.09);
+  --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.14);
+  --shadow-green: 0 8px 32px rgba(55, 167, 17, 0.18);
+  --border: #e5e7eb;
+  --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html,
@@ -16,8 +26,6 @@ body {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  
-  
 }
 
 body {
@@ -26,6 +34,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: var(--font-geist-sans) !important;
+  line-height: 1.6;
 }
 
 * {
@@ -38,55 +47,52 @@ a {
   color: inherit;
   text-decoration: none;
 }
-button{
-    cursor: pointer;
+
+button {
+  cursor: pointer;
 }
+
+/* ── Slick carousel global overrides ─────────────────────── */
+.slick-track {
+  margin: 0 !important;
+}
+
 .videoSlidre .slick-list {
   overflow: visible !important;
 }
 
+.slick-dots {
+  bottom: -32px !important;
+}
 
+.slick-dots li {
+  margin: 0 3px !important;
+  width: auto !important;
+  height: auto !important;
+}
 
+.slick-dots li button {
+  width: 8px !important;
+  height: 8px !important;
+  padding: 0 !important;
+  border-radius: 999px !important;
+  background: var(--border) !important;
+  transition: width var(--transition), background var(--transition) !important;
+}
 
+.slick-dots li button::before {
+  display: none !important;
+}
 
+.slick-dots li.slick-active button {
+  width: 24px !important;
+  background: var(--main) !important;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* ── TipTap / word-editor ────────────────────────────────── */
 .wordEditorWrap {
-  border: 1px solid rgba(0,0,0,.18);
-  border-radius: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   overflow: hidden;
   background: #fff;
 }
@@ -100,27 +106,29 @@ button{
   gap: 8px;
   padding: 10px;
   background: #f6f6f6;
-  border-bottom: 1px solid rgba(0,0,0,.12);
+  border-bottom: 1px solid var(--border);
 }
 
-.btn, .select {
+.btn,
+.select {
   height: 34px;
   padding: 0 10px;
-  border: 1px solid rgba(0,0,0,.2);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   background: #fff;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   font-size: 14px;
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
 .btn.active {
   border-color: #1976d2;
-  box-shadow: 0 0 0 2px rgba(25,118,210,.15);
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.12);
 }
 
 .sep {
   width: 1px;
-  background: rgba(0,0,0,.15);
+  background: var(--border);
   margin: 0 4px;
 }
 
@@ -130,9 +138,9 @@ button{
   gap: 6px;
   height: 34px;
   padding: 0 10px;
-  border: 1px solid rgba(0,0,0,.2);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   background: #fff;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   font-size: 14px;
 }
@@ -146,13 +154,13 @@ button{
 }
 
 .editor {
-  padding: 16px;
+  padding: 20px;
 }
 
 .ProseMirror {
   min-height: 380px;
   outline: none;
-  line-height: 1.5;
+  line-height: 1.6;
   font-size: 16px;
 }
 
@@ -167,7 +175,4 @@ button{
 
 p:empty {
   min-height: 1.5em;
-}
-.slick-track{
-  margin: 0 !important;
 }

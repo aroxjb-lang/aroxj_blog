@@ -1,123 +1,147 @@
 .footer {
-	width: 100%;
-	padding: 20px 0 40px;
-	background-color: var(--background-active);
-	margin-top: 40px;
+  width: 100%;
+  padding: 48px 0 0;
+  background: #0f1a0c;
+  margin-top: 64px;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .container {
-	display: flex;
-	gap: calc(2 * var(--padding));
-	max-width: var(--container);
-	width: 100%;
-	margin: 0 auto;
-	padding: 0 var(--padding);
-	flex-direction: column;
+  display: flex;
+  gap: calc(2 * var(--padding));
+  max-width: var(--container);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--padding);
+  flex-direction: column;
 }
 
 .logo {
-	display: flex;
-	align-items: center;
-	gap: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
 
-	img {
-		height: 32px;
-		width: 32px;
-	}
+  img {
+    height: 28px;
+    width: 28px;
+    border-radius: 6px;
+    opacity: 0.9;
+  }
 }
 
 .title {
-	max-width: 100px;
-	font-size: 16px;
-	line-height: 18px;
-	font-weight: 900;
-	font-family: var(--font-bebas-sans);
-	color: var(--main);
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	display: flex;
-	gap: 3px;
+  max-width: 100px;
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 900;
+  font-family: var(--font-bebas-sans);
+  color: var(--main);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  display: flex;
+  gap: 3px;
 }
 
 .footerTitle {
-	font-size: 24px;
-	font-weight: 700;
-	font-family: var(--font-bebas-sans);
-	letter-spacing: 1px;
-	text-transform: capitalize;
-	line-height: 1;
-	margin: var(--padding) auto;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-bebas-sans);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: var(--padding);
+  color: var(--main);
 }
 
 .copyright {
-	margin-top: 20px;
-	padding-top: 20px;
-	border-top: 1px solid var(--main);
-	width: 100%;
+  margin-top: 32px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
 }
 
 .main {
-	display: flex;
-	justify-content: space-between;
-	@media screen and (max-width: 1024px) {
-		flex-direction: column;
-	}
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+    gap: 32px;
+  }
 }
 
 .footerNavigation {
-	display: grid;
-	grid-template-columns: 80px repeat(4, 150px);
-	gap: var(--padding);
-	@media screen and (max-width: 650px) {
-		grid-template-columns: repeat(3, auto);
-	}
-	@media screen and (max-width: 500px) {
-		grid-template-columns: repeat(2, auto);
-	}
+  display: grid;
+  grid-template-columns: 80px repeat(4, 1fr);
+  gap: var(--padding);
+
+  @media screen and (max-width: 650px) {
+    grid-template-columns: repeat(3, auto);
+  }
+
+  @media screen and (max-width: 500px) {
+    grid-template-columns: repeat(2, auto);
+  }
 }
 
 .navColumn {
-	display: flex;
-	flex-direction: column;
-	min-width: fit-content;
-	gap: calc(var(--padding) / 2);
+  display: flex;
+  flex-direction: column;
+  min-width: fit-content;
+  gap: 10px;
 }
 
 .navTitle {
-	font-weight: 900;
-	text-transform: capitalize;
-	min-height: 21px;
-	white-space: nowrap;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.4);
+  min-height: 21px;
+  white-space: nowrap;
 }
 
 .link {
-	text-transform: capitalize;
+  text-transform: capitalize;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 14px;
+  transition: color var(--transition);
+
+  &:hover {
+    color: var(--main);
+  }
 }
 
 .icons {
-	display: flex;
-	gap: 8px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 
+  .icon {
+    height: 44px;
+    width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(55, 167, 17, 0.15);
+    border: 1px solid rgba(55, 167, 17, 0.25);
+    border-radius: 12px;
+    transition: background var(--transition), border-color var(--transition), transform var(--transition);
+    overflow: hidden;
 
-	.icon {
-		height: 48px;
-		width: 48px;
-		display: flex;
-		align-items: center;
-		justify-items: center;
-		background-color: var(--main);
-		opacity: 0.8;
-		/*padding: 12px;*/
-		border-radius: 64px;
-		transition: .3s ease-in-out;
+    &:hover {
+      background: var(--main);
+      border-color: var(--main);
+      transform: translateY(-2px);
+    }
 
-		&:hover {
-			opacity: 1;
-		}
-
-		img {
-			width: 100%;
-			height: 100%;
-		}
-	}
+    img {
+      width: 60%;
+      height: 60%;
+      object-fit: contain;
+    }
+  }
 }
