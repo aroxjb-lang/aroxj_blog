@@ -79,7 +79,7 @@ export default function Header() {
         <Link href={Routes.HOME} className={styles.logo}>
           <Image src={"/logo.png"} width={64} height={64} alt="logo" />
           <p className={styles.title}>
-            {t("healthy blog")}
+			  առողջ բլոգ
           </p>
         </Link>
         <div className={styles.desktop}>

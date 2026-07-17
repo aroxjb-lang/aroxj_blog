@@ -85,6 +85,9 @@
   margin-bottom: 8px;
   color: var(--secondary-text);
   line-height: 1.5;
+	img{
+		max-width: 100%;
+	}
 }
 
 .views {

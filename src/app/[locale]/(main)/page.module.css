@@ -125,6 +125,12 @@
     white-space: pre-wrap;
     line-height: 1.8;
     font-size: 16px;
+
+	  img{
+		  max-width: 100%;
+		  float: left;
+		  margin-top: 6px;
+	  }
   }
 }
 
@@ -144,6 +150,7 @@
   .mostViewWrapper {
     margin-top: 0;
     margin-bottom: 20px;
+
   }
 
   .topPost {
