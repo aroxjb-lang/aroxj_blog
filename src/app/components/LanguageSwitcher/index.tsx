@@ -37,7 +37,7 @@ const LanguageSwitcher = () => {
             </div>
             {' '}
             <Collapse in={open} orientation="vertical" className={styles.collapse}>
-                <MenuItem>
+                <MenuItem className={styles.languageItem}>
                     <div
                         className={styles.language}
                         onClick={() => router.push(pathname, {locale: 'am'})}
@@ -51,7 +51,7 @@ const LanguageSwitcher = () => {
                         AM
                     </div>
                 </MenuItem>
-                <MenuItem value={'en'}>
+                <MenuItem value={'en'} className={styles.languageItem}>
                     <div
                         className={styles.language}
                         onClick={() => router.push(pathname, {locale: 'en'})}
@@ -65,7 +65,7 @@ const LanguageSwitcher = () => {
                         EN
                     </div>
                 </MenuItem>
-                <MenuItem value={'ru'}>
+                <MenuItem value={'ru'} className={styles.languageItem}>
                     <div
                         className={styles.language}
                         onClick={() => router.push(pathname, {locale: 'ru'})}

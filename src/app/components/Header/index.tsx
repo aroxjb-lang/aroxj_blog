@@ -79,7 +79,7 @@ export default function Header() {
         <Link href={Routes.HOME} className={styles.logo}>
           <Image src={"/logo.png"} width={64} height={64} alt="logo" />
           <p className={styles.title}>
-            {t("healthy blog")}
+			  առողջ բլոգ
           </p>
         </Link>
         <div className={styles.desktop}>
@@ -150,7 +150,7 @@ export default function Header() {
           </ClickAwayListener>
         </div>
         <div className={clx(styles.searchWrapper, styles.desktop)}>
-          <ClickAwayListener onClickAway={() => setSearchOpen(false)}>
+			{/* <ClickAwayListener onClickAway={() => setSearchOpen(false)}>
             <div className={styles.search}>
               <SearchRounded
                 onClick={() => setSearchOpen(!searchOpen)}
@@ -169,7 +169,7 @@ export default function Header() {
                 />
               </Collapse>
             </div>
-          </ClickAwayListener>
+          </ClickAwayListener>*/}
 
           <LanguageSwitcher />
         </div>

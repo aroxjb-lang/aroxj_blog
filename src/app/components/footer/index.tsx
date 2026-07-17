@@ -130,9 +130,7 @@ export default function Footer({
             &#9426;
             <Image src={"/logo.png"} width={64} height={64} alt="logo" />
             <p className={styles.title}>
-              {t.rich("healthy blog", {
-                br: () => <span> </span>,
-              })}
+				առողջ բլոգ
             </p>
             {new Date().getFullYear()} | {t("All rights reserved")}
           </Link>{" "}

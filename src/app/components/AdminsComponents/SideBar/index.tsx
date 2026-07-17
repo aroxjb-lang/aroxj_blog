@@ -22,9 +22,7 @@ export default function SideBar() {
       <Link href={"/admin"} className={styles.logo}>
         <Image src={"/logo.png"} width={48} height={48} alt="logo" />
         <p className={styles.title}>
-          {t.rich("healthy blog", {
-            br: () => null,
-          })}
+			առողջ բլոգ
         </p>
       </Link>
       <nav className={styles.navigation}>

@@ -41,9 +41,7 @@ export default function LogIn() {
       <div className={styles.logo}>
         <img src={"/logo.png"} alt="logo" />
         <p className={styles.title}>
-          {t.rich("healthy blog", {
-            br: () => <br />,
-          })}
+			առողջ բլոգ
         </p>
       </div>
       <form

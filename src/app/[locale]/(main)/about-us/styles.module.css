@@ -5,22 +5,29 @@
   width: 100%;
   gap: 32px;
   max-width: var(--container);
-  margin: 0 auto -40px;
-  padding: 100px var(--padding) 160px;
+  margin: 0 auto;
+  padding: 80px var(--padding) 120px;
   overflow: hidden;
   position: relative;
 }
 
 .title {
-  font-size: 32px;
+  font-size: 40px;
   font-family: var(--font-bebas-sans);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--main);
+  letter-spacing: 1px;
+  padding-left: 16px;
+  border-left: 4px solid var(--main);
 }
+
 .description {
-  font-size: 18px;
+  font-size: 17px;
   text-align: justify;
   white-space: pre-wrap;
+  line-height: 1.8;
+  color: var(--foreground);
+  max-width: 760px;
 }
 
 .background {
@@ -34,5 +41,5 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  opacity: 0.2;
+  opacity: 0.05;
 }
