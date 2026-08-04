@@ -30,6 +30,7 @@ export default function BlogSlider({
     const getWidth = () => {
       setWidth(window.innerWidth);
     };
+	  getWidth()
     window.addEventListener("resize", getWidth);
     return () => {
       window.removeEventListener("resize", getWidth);

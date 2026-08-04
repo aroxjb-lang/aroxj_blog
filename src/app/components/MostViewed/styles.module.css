@@ -1,143 +1,151 @@
 .wrapper {
-  max-height: 100%;
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: var(--background);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
+	max-height: 100%;
+	border-radius: var(--radius);
+	overflow: hidden;
+	background: var(--background);
+	border: 1px solid var(--border);
+	box-shadow: var(--shadow-sm);
 }
 
 .title {
-  font-family: var(--font-bebas-sans);
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 10px;
-  padding: 0 16px;
-  letter-spacing: 1px;
-  font-size: 18px;
-  height: 52px;
-  background: var(--background-active);
-  border-bottom: 2px solid var(--main);
-  color: var(--main);
+	font-family: var(--font-bebas-sans);
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 10px;
+	padding: 0 16px;
+	letter-spacing: 1px;
+	font-size: 18px;
+	height: 52px;
+	background: var(--background-active);
+	border-bottom: 2px solid var(--main);
+	color: var(--main);
 
-  &::before {
-    content: '';
-    width: 4px;
-    height: 20px;
-    background: var(--main);
-    border-radius: 2px;
-    flex-shrink: 0;
-  }
+	&::before {
+		content: '';
+		width: 4px;
+		height: 20px;
+		background: var(--main);
+		border-radius: 2px;
+		flex-shrink: 0;
+	}
 }
 
 .link {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  color: var(--main);
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	color: var(--main);
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	cursor: pointer;
 
-  &::after {
-    content: '→';
-    transition: transform var(--transition);
-  }
+	&::after {
+		content: '→';
+		transition: transform var(--transition);
+	}
 
-  &:hover::after {
-    transform: translateX(3px);
-  }
+	&:hover::after {
+		transform: translateX(3px);
+	}
 }
 
 .mostViewedList {
-  overflow-y: auto;
-  padding: 8px 16px;
-  max-height: 1400px;
-display: flex;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 8px 16px;
+	max-height: 1400px;
+	display: flex;
 	flex-direction: column;
 	gap: 8px;
-  &::-webkit-scrollbar {
-    width: 4px;
-    background: transparent;
-  }
 
-  &::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border-radius: 10px;
-  }
+	&::-webkit-scrollbar {
+		width: 4px;
+		background: transparent;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: var(--border);
+		border-radius: 10px;
+	}
 }
 
 .postItem {
-  padding: 14px 0;
-  height: 100%;
-  position: relative;
+	padding: 14px 0;
+	height: 100%;
+	position: relative;
 
-  &:not(:last-child) {
-    border-bottom: 1px solid var(--border);
-  }
+	&:not(:last-child) {
+		border-bottom: 1px solid var(--border);
+	}
 }
 
 .postTitle {
-  font-weight: 700;
-  font-size: 14px;
-  margin-bottom: 4px;
-  line-height: 1.4;
-  color: var(--foreground);
-  transition: color var(--transition);
+	font-weight: 700;
+	font-size: 14px;
+	margin-bottom: 4px;
+	line-height: 1.4;
+	color: var(--foreground);
+	transition: color var(--transition);
 
-  &:hover {
-    color: var(--main);
-  }
+	&:hover {
+		color: var(--main);
+	}
 }
 
 .content {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  font-size: 13px;
-  text-overflow: ellipsis;
-  margin-bottom: 6px;
-  color: var(--secondary-text);
-  line-height: 1.5;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	font-size: 13px;
+	text-overflow: ellipsis;
+	margin-bottom: 6px;
+	color: var(--secondary-text);
+	line-height: 1.5;
 }
 
 .views {
-  color: var(--secondary-text);
-  font-size: 11px;
-  font-weight: 500;
-  margin-bottom: 6px;
-  display: flex;
-  align-items: center;
-  gap: 3px;
+	color: var(--secondary-text);
+	font-size: 11px;
+	font-weight: 500;
+	margin-bottom: 6px;
+	display: flex;
+	align-items: center;
+	gap: 3px;
 }
 
 @media (max-width: 768px) {
-  .mostViewedList {
-    max-height: 520px;
-  }
+	.mostViewedList {
+		max-height: 520px;
+	}
 }
 
 .itemWrapper {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
+	display: flex;
+	gap: 14px;
+	align-items: flex-start;
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
 }
 
 .banner {
-  width: 38%;
-  flex-shrink: 0;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  object-position: top center;
-  transition: transform var(--transition);
-  border-radius: var(--radius-sm);
-  background: var(--background-active);
+	width: 38%;
+	flex-shrink: 0;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	object-position: top center;
+	transition: transform var(--transition);
+	border-radius: var(--radius-sm);
+	background: var(--background-active);
+	@media (max-width: 768px) {
+		width: 100%
+	}
 }
 
 .postItem:hover .banner {
-  transform: scale(1.03);
+	transform: scale(1.03);
 }
