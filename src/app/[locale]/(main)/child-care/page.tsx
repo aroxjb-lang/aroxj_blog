@@ -1,7 +1,14 @@
-import PageComponent from '@/app/components/PageComponent'
+import PageComponent from '@/app/components/PageComponent';
 import { getPosts, getTopPost } from '@/app/lib/actions/posts';
 import { Categories, Locales } from '@/app/lib/schemas';
-import React from 'react'
+import React from 'react';
+import { Metadata } from 'next';
+import { getCategoryMetadata } from '@/app/lib/utilits/categoryMeta';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: Locales }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return getCategoryMetadata('child-care', locale);
+}
 
 export default async function ChildCare({
   params,
