@@ -8,35 +8,62 @@ import MostViewed from "@/app/components/MostViewed";
 import LoadingCircule from "@/app/components/LoadingCircule";
 import Card from "@/app/components/Card";
 import { YouTubeEmbed } from "@next/third-parties/google";
-import {log} from 'node:util';
 import {Metadata} from 'next';
 import ShareButtons from '@/app/components/shareButtons';
+
+const BASE_URL = 'https://aroxjblog.am';
+
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 160);
+}
+
+function postUrl(slug: string, locale: Locales): string {
+  return locale === 'am' ? `${BASE_URL}/${slug}` : `${BASE_URL}/${locale}/${slug}`;
+}
+
 export async function generateMetadata({
-                                         params,
-                                       }: {
+  params,
+}: {
   params: Promise<{ post_id: string; locale: Locales }>;
-}):Promise<Metadata> {
-  const {post_id,locale} = await params;
+}): Promise<Metadata> {
+  const { post_id, locale } = await params;
   const post = await getPostByID(decodeURIComponent(post_id));
 
-  return {
-    title: post.title[locale]?post.title[locale]:post.title.am,
+  const title = post.title[locale] || post.title.am;
+  const description = stripHtml(post.content[locale] || post.content.am);
+  const image = `${BASE_URL}/wp-content/${post.featured_media_paths?.[0]}`;
+  const canonical = postUrl(post.slug, locale);
 
-    description: post.content[locale]?post.content[locale]:post.content.am,
+  return {
+    title,
+    description,
+
+    alternates: {
+      canonical,
+      languages: {
+        hy: postUrl(post.slug, 'am'),
+        en: postUrl(post.slug, 'en'),
+        ru: postUrl(post.slug, 'ru'),
+        'x-default': postUrl(post.slug, 'am'),
+      },
+    },
 
     openGraph: {
-      title: post.title[locale]?post.title[locale]:post.title.am,
-      description: post.content[locale]?post.content[locale]:post.content.am,
-      images: ['https://aroxjblog.am/wp-content/'+post.featured_media_paths?.[0]],
-      url: `https://aroxjblog.am/${locale}/${post.slug}`,
+      title,
+      description,
+      images: [{ url: image, alt: title }],
+      url: canonical,
       type: 'article',
+      siteName: 'AroxjBlog',
+      publishedTime: post.date,
+      modifiedTime: post.updatedAt,
     },
 
     twitter: {
       card: 'summary_large_image',
-      title: post.title[locale]?post.title[locale]:post.title.am,
-      description: post.content[locale]?post.content[locale]:post.content.am,
-      images: ['https://aroxjblog.am/wp-content'+post.featured_media_paths?.[0]],
+      title,
+      description,
+      images: [image],
     },
   };
 }
@@ -56,8 +83,31 @@ export default async function PostByID({
     const { data: closeData } = await getTopPost({ limit: 4, page: 1 });
     // if (!data) return redirect({ href: "/", locale });
 
+    const jsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: data.title[locale] || data.title.am,
+      description: stripHtml(data.content[locale] || data.content.am),
+      image: `${BASE_URL}/wp-content/${data.featured_media_paths?.[0]}`,
+      datePublished: data.date,
+      dateModified: data.updatedAt,
+      url: postUrl(data.slug, locale),
+      inLanguage: locale === 'am' ? 'hy' : locale,
+      author: { '@type': 'Organization', name: 'AroxjBlog', url: BASE_URL },
+      publisher: {
+        '@type': 'Organization',
+        name: 'AroxjBlog',
+        url: BASE_URL,
+        logo: { '@type': 'ImageObject', url: `${BASE_URL}/favicon.ico` },
+      },
+    };
+
     return (
       <div>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <div className={styles.page}>
           <section className={styles.mostSection}>
             <div className={styles.topPost}>

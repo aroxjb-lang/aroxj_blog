@@ -19,13 +19,12 @@ export default async function Posts({
 }) {
   const { locale } = await params;
   const { page, search, category, sort } = await searchParams;
-  const { data, pagesCount } = await getAllPosts({
+  const { data, pagesCount } = await getPosts({
     limit: 20,
     page: +page,
     search: search,
     category: category,
     sort: sort,
   });
-  console.log(data);
   return <PostsPage locale={locale} data={structuredClone(data)} pagesCount={pagesCount} />;
 }

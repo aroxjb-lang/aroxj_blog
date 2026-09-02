@@ -12,6 +12,7 @@ import localFont from "next/font/local";
 import MUIThemeProvider from "../lib/context/themeContext";
 import Loading from "../components/LoadingCircule";
 import Scripts from "../components/Scripts";
+import { Locales } from "../lib/schemas";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,32 +24,61 @@ const bebas = localFont({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-	metadataBase: new URL("https://aroxjblog.am"),
-
-	title: {
-		default: "AroxjBlog",
-		template: "%s | AroxjBlog",
-	},
-
-	description:
-		"Health, lifestyle, wellness and beauty articles.",
-
-	openGraph: {
-		type: "website",
-		siteName: "AroxjBlog",
-		locale: "hy_AM",
-	},
-
-	twitter: {
-		card: "summary_large_image",
-	},
-
-	robots: {
-		index: true,
-		follow: true,
-	},
+const DESCRIPTIONS: Record<Locales, string> = {
+  am: "Հայկական առողջ ապրելակերպի, բժշկության, գեղեցկության և ճամփորդությունների մասին հոդվածներ AroxjBlog-ում։",
+  en: "Armenian health, lifestyle, wellness and beauty articles on AroxjBlog.",
+  ru: "Армянские статьи о здоровье, образе жизни, красоте и путешествиях на AroxjBlog.",
 };
+
+const OG_LOCALES: Record<Locales, string> = {
+  am: "hy_AM",
+  en: "en_US",
+  ru: "ru_RU",
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const l = (locale as Locales) in DESCRIPTIONS ? (locale as Locales) : "am";
+
+  return {
+    metadataBase: new URL("https://aroxjblog.am"),
+
+    title: {
+      default: "AroxjBlog",
+      template: "%s | AroxjBlog",
+    },
+
+    description: DESCRIPTIONS[l],
+
+    alternates: {
+      languages: {
+        hy: "https://aroxjblog.am",
+        en: "https://aroxjblog.am/en",
+        ru: "https://aroxjblog.am/ru",
+        "x-default": "https://aroxjblog.am",
+      },
+    },
+
+    openGraph: {
+      type: "website",
+      siteName: "AroxjBlog",
+      locale: OG_LOCALES[l],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
 export default async function RootLayout({
   children,
   params,
